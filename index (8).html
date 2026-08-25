@@ -1,0 +1,2189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark">
+    <meta name="robots" content="index, follow">
+
+    <title>Aprova Informática | Cursos em Lago dos Rodrigues - MA</title>
+    <meta
+        name="description"
+        content="Cursos práticos de informática, Pacote Office e Excel em Lago dos Rodrigues - MA. Aprenda tecnologia com acompanhamento e foco na vida profissional."
+    >
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Aprova Informática">
+    <meta property="og:title" content="Aprova Informática | Cursos em Lago dos Rodrigues - MA">
+    <meta
+        property="og:description"
+        content="Aulas práticas para desenvolver autonomia digital e habilidades para os estudos e o trabalho."
+    >
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aprova Informática">
+    <meta
+        name="twitter:description"
+        content="Cursos de informática, Pacote Office e Excel em Lago dos Rodrigues - MA."
+    >
+
+    <!-- Quando o domínio e a imagem oficial estiverem prontos, adicione canonical, og:url e og:image. -->
+    <link
+        rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050505'/%3E%3Cpath d='M12 25 32 15l20 10-20 10-20-10Zm8 7v10c6 5 18 5 24 0V32' fill='none' stroke='%23ffd000' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+    >
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "EducationalOrganization",
+          "@id": "#aprova-informatica",
+          "name": "Aprova Informática",
+          "description": "Cursos práticos de informática e tecnologia.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lago dos Rodrigues",
+            "addressRegion": "MA",
+            "addressCountry": "BR"
+          },
+          "sameAs": [
+            "https://www.instagram.com/aaprovainformatica/",
+            "https://linktr.ee/aaprovacurso"
+          ]
+        },
+        {
+          "@type": "Course",
+          "name": "Informática Básica",
+          "description": "Fundamentos do computador, arquivos, internet e ferramentas digitais.",
+          "provider": { "@id": "#aprova-informatica" }
+        },
+        {
+          "@type": "Course",
+          "name": "Pacote Office",
+          "description": "Word, PowerPoint e recursos essenciais para estudos e trabalho.",
+          "provider": { "@id": "#aprova-informatica" }
+        },
+        {
+          "@type": "Course",
+          "name": "Excel",
+          "description": "Planilhas, fórmulas, organização e análise de dados.",
+          "provider": { "@id": "#aprova-informatica" }
+        },
+        {
+          "@type": "Course",
+          "name": "Tecnologia e Ferramentas Digitais",
+          "description": "Recursos digitais, segurança e produtividade para o dia a dia.",
+          "provider": { "@id": "#aprova-informatica" }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --black: #050505;
+            --black-soft: #0d0d0d;
+            --surface: #121212;
+            --surface-strong: #181818;
+            --yellow: #ffd000;
+            --yellow-dark: #e8bd00;
+            --white: #ffffff;
+            --text: #f7f7f7;
+            --muted: #b8bdc7;
+            --muted-strong: #d3d6dc;
+            --line: rgba(255, 255, 255, 0.11);
+            --line-yellow: rgba(255, 208, 0, 0.32);
+            --success: #66d99b;
+            --radius-sm: 0.8rem;
+            --radius-md: 1.25rem;
+            --radius-lg: 1.75rem;
+            --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+            --container: 74rem;
+            --header-height: 4.75rem;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 1rem);
+        }
+
+        body {
+            margin: 0;
+            min-width: 20rem;
+            background: var(--black);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.6;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body.menu-open,
+        body.dialog-open {
+            overflow: hidden;
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        button,
+        summary {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--yellow);
+            outline-offset: 4px;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .skip-link {
+            position: fixed;
+            top: 0.75rem;
+            left: 0.75rem;
+            z-index: 200;
+            padding: 0.75rem 1rem;
+            border-radius: 0.65rem;
+            background: var(--yellow);
+            color: var(--black);
+            font-weight: 800;
+            transform: translateY(-180%);
+            transition: transform 180ms ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .container {
+            width: min(calc(100% - 2rem), var(--container));
+            margin-inline: auto;
+        }
+
+        .section {
+            position: relative;
+            padding-block: clamp(4.5rem, 8vw, 7.5rem);
+        }
+
+        .section--soft {
+            background: var(--black-soft);
+        }
+
+        .section-heading {
+            max-width: 48rem;
+            margin: 0 auto clamp(2.5rem, 5vw, 4.25rem);
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin: 0 0 0.85rem;
+            color: var(--yellow);
+            font-size: 0.78rem;
+            font-weight: 850;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 1.6rem;
+            height: 2px;
+            background: currentColor;
+            content: "";
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.12;
+            letter-spacing: -0.035em;
+        }
+
+        h1 {
+            max-width: 13ch;
+            margin-bottom: 1.35rem;
+            font-size: clamp(2.65rem, 6vw, 5.4rem);
+            font-weight: 900;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+            font-size: clamp(2.1rem, 4.5vw, 3.75rem);
+            font-weight: 900;
+        }
+
+        h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .accent {
+            color: var(--yellow);
+        }
+
+        .lead {
+            color: var(--muted);
+            font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+        }
+
+        .button {
+            display: inline-flex;
+            min-height: 3.1rem;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            padding: 0.8rem 1.25rem;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 800;
+            line-height: 1.2;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button--primary {
+            background: var(--yellow);
+            color: var(--black);
+            box-shadow: 0 12px 34px rgba(255, 208, 0, 0.2);
+        }
+
+        .button--primary:hover {
+            background: #ffda24;
+            box-shadow: 0 16px 42px rgba(255, 208, 0, 0.28);
+        }
+
+        .button--secondary {
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--white);
+        }
+
+        .button--secondary:hover {
+            border-color: var(--line-yellow);
+            background: rgba(255, 208, 0, 0.07);
+        }
+
+        .button svg,
+        .text-link svg {
+            width: 1.1rem;
+            height: 1.1rem;
+            flex: 0 0 auto;
+        }
+
+        .site-header {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 100;
+            min-height: var(--header-height);
+            border-bottom: 1px solid transparent;
+            transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+        }
+
+        .site-header.is-scrolled,
+        .site-header.menu-active {
+            border-bottom-color: var(--line);
+            background: rgba(5, 5, 5, 0.92);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(18px);
+        }
+
+        .header-inner {
+            display: flex;
+            min-height: var(--header-height);
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--white);
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 2.75rem;
+            height: 2.75rem;
+            flex: 0 0 auto;
+            place-items: center;
+            border: 1px solid rgba(255, 208, 0, 0.45);
+            border-radius: 0.8rem;
+            background: var(--yellow);
+            color: var(--black);
+            box-shadow: 0 10px 30px rgba(255, 208, 0, 0.14);
+        }
+
+        .brand-mark svg {
+            width: 1.75rem;
+            height: 1.75rem;
+        }
+
+        .brand-name {
+            font-size: 1.02rem;
+            white-space: nowrap;
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .nav-link {
+            min-height: 2.75rem;
+            padding: 0.72rem 0.78rem;
+            border-radius: 0.65rem;
+            color: var(--muted-strong);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 160ms ease, background-color 160ms ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--yellow);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 2.85rem;
+            height: 2.85rem;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line);
+            border-radius: 0.75rem;
+            background: var(--surface);
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        .menu-toggle svg {
+            width: 1.45rem;
+            height: 1.45rem;
+        }
+
+        .mobile-nav {
+            padding: 0 0 1rem;
+        }
+
+        .mobile-nav[hidden] {
+            display: none;
+        }
+
+        .mobile-nav-list {
+            display: grid;
+            gap: 0.3rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--line);
+        }
+
+        .mobile-nav .nav-link {
+            display: flex;
+            min-height: 3rem;
+            align-items: center;
+            padding-inline: 1rem;
+        }
+
+        .hero {
+            position: relative;
+            isolation: isolate;
+            display: grid;
+            min-height: min(56rem, 100svh);
+            align-items: center;
+            overflow: hidden;
+            padding-block: calc(var(--header-height) + 4rem) 4.5rem;
+            background:
+                radial-gradient(circle at 76% 33%, rgba(255, 208, 0, 0.13), transparent 27rem),
+                linear-gradient(rgba(255, 208, 0, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 208, 0, 0.025) 1px, transparent 1px),
+                var(--black);
+            background-size: auto, 3.75rem 3.75rem, 3.75rem 3.75rem, auto;
+        }
+
+        .hero::before {
+            position: absolute;
+            z-index: -1;
+            top: 16%;
+            right: -8rem;
+            width: 28rem;
+            height: 28rem;
+            border: 1px solid rgba(255, 208, 0, 0.12);
+            border-radius: 50%;
+            content: "";
+            box-shadow: 0 0 0 6rem rgba(255, 208, 0, 0.018), 0 0 0 12rem rgba(255, 208, 0, 0.012);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 0.85fr);
+            align-items: center;
+            gap: clamp(2.5rem, 7vw, 6rem);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.4rem;
+            padding: 0.55rem 0.85rem;
+            border: 1px solid var(--line-yellow);
+            border-radius: 999px;
+            background: rgba(255, 208, 0, 0.06);
+            color: var(--muted-strong);
+            font-size: 0.82rem;
+            font-weight: 750;
+        }
+
+        .hero-badge-dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--yellow);
+            box-shadow: 0 0 0 0.35rem rgba(255, 208, 0, 0.1);
+        }
+
+        .hero-copy .lead {
+            max-width: 39rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+        }
+
+        .hero-note {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.3rem;
+            margin: 1.6rem 0 0;
+            padding: 0;
+            color: var(--muted);
+            font-size: 0.87rem;
+            list-style: none;
+        }
+
+        .hero-note li {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .check-dot {
+            display: inline-grid;
+            width: 1.1rem;
+            height: 1.1rem;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(102, 217, 155, 0.14);
+            color: var(--success);
+            font-size: 0.72rem;
+            font-weight: 900;
+        }
+
+        .hero-panel-wrap {
+            position: relative;
+        }
+
+        .hero-panel {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(1.4rem, 4vw, 2.25rem);
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: var(--radius-lg);
+            background: linear-gradient(145deg, rgba(24, 24, 24, 0.97), rgba(9, 9, 9, 0.94));
+            box-shadow: var(--shadow), 0 0 80px rgba(255, 208, 0, 0.08);
+        }
+
+        .hero-panel::before {
+            position: absolute;
+            inset: 0 auto auto 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+            content: "";
+        }
+
+        .panel-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.7rem;
+        }
+
+        .panel-label {
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+        }
+
+        .panel-chip {
+            padding: 0.4rem 0.65rem;
+            border: 1px solid var(--line-yellow);
+            border-radius: 999px;
+            color: var(--yellow);
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+
+        .journey {
+            display: grid;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .journey-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 1rem;
+            border: 1px solid var(--line);
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .journey-number {
+            display: grid;
+            width: 2.35rem;
+            height: 2.35rem;
+            place-items: center;
+            border-radius: 0.75rem;
+            background: rgba(255, 208, 0, 0.11);
+            color: var(--yellow);
+            font-size: 0.78rem;
+            font-weight: 900;
+        }
+
+        .journey-copy strong,
+        .journey-copy span {
+            display: block;
+        }
+
+        .journey-copy strong {
+            font-size: 0.95rem;
+        }
+
+        .journey-copy span {
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        .journey-status {
+            color: var(--success);
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .floating-card {
+            position: absolute;
+            right: -1.2rem;
+            bottom: -1.4rem;
+            display: flex;
+            max-width: 14rem;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--line-yellow);
+            border-radius: 1rem;
+            background: rgba(13, 13, 13, 0.96);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.42);
+            color: var(--muted-strong);
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .floating-card svg {
+            width: 1.65rem;
+            height: 1.65rem;
+            flex: 0 0 auto;
+            color: var(--yellow);
+        }
+
+        .trust-strip {
+            border-block: 1px solid var(--line);
+            background: var(--black-soft);
+        }
+
+        .trust-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            margin: 0;
+            padding: 1.15rem 0;
+            list-style: none;
+        }
+
+        .trust-list li {
+            display: flex;
+            min-height: 3rem;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding-inline: 1rem;
+            color: var(--muted-strong);
+            font-size: 0.88rem;
+            font-weight: 750;
+            text-align: center;
+        }
+
+        .trust-list li + li {
+            border-left: 1px solid var(--line);
+        }
+
+        .trust-list svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            flex: 0 0 auto;
+            color: var(--yellow);
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1.1rem;
+        }
+
+        .course-card,
+        .benefit-card,
+        .outcome-card {
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            background: var(--surface);
+        }
+
+        .course-card {
+            position: relative;
+            display: flex;
+            min-height: 22rem;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 1.45rem;
+            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--line-yellow);
+            box-shadow: 0 20px 46px rgba(0, 0, 0, 0.28);
+        }
+
+        .course-card::after {
+            position: absolute;
+            inset: auto 0 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+            content: "";
+            opacity: 0;
+            transition: opacity 180ms ease;
+        }
+
+        .course-card:hover::after {
+            opacity: 1;
+        }
+
+        .card-icon {
+            display: grid;
+            width: 3.15rem;
+            height: 3.15rem;
+            place-items: center;
+            margin-bottom: 1.2rem;
+            border: 1px solid var(--line-yellow);
+            border-radius: 0.95rem;
+            background: rgba(255, 208, 0, 0.08);
+            color: var(--yellow);
+        }
+
+        .card-icon svg {
+            width: 1.55rem;
+            height: 1.55rem;
+        }
+
+        .course-card p,
+        .benefit-card p,
+        .outcome-card p {
+            color: var(--muted);
+        }
+
+        .course-card p {
+            flex: 1;
+        }
+
+        .course-tag {
+            align-self: flex-start;
+            margin-bottom: 0.85rem;
+            padding: 0.35rem 0.58rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            color: var(--muted-strong);
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+
+        .text-link {
+            display: inline-flex;
+            min-height: 2.75rem;
+            align-items: center;
+            gap: 0.45rem;
+            align-self: flex-start;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: var(--yellow);
+            cursor: pointer;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .text-link:hover {
+            text-decoration: underline;
+            text-underline-offset: 0.25rem;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            counter-reset: steps;
+        }
+
+        .method-step {
+            position: relative;
+            min-height: 15rem;
+            padding: 1.5rem;
+            border-top: 1px solid var(--line-yellow);
+            background: linear-gradient(180deg, rgba(255, 208, 0, 0.06), transparent 75%);
+            counter-increment: steps;
+        }
+
+        .method-step::before {
+            display: grid;
+            width: 2.6rem;
+            height: 2.6rem;
+            place-items: center;
+            margin-bottom: 1.25rem;
+            border-radius: 50%;
+            background: var(--yellow);
+            color: var(--black);
+            content: "0" counter(steps);
+            font-size: 0.76rem;
+            font-weight: 900;
+        }
+
+        .method-step p {
+            color: var(--muted);
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .benefit-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem;
+            padding: 1.45rem;
+        }
+
+        .benefit-card .card-icon {
+            width: 2.8rem;
+            height: 2.8rem;
+            margin: 0;
+        }
+
+        .benefit-card h3 {
+            margin-bottom: 0.4rem;
+            font-size: 1.05rem;
+            letter-spacing: -0.02em;
+        }
+
+        .benefit-card p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        .outcome-wrap {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            align-items: start;
+            gap: clamp(2rem, 6vw, 5rem);
+        }
+
+        .outcome-intro {
+            position: sticky;
+            top: calc(var(--header-height) + 2rem);
+        }
+
+        .outcome-intro .lead {
+            max-width: 32rem;
+        }
+
+        .outcome-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .outcome-card {
+            padding: 1.5rem;
+        }
+
+        .outcome-number {
+            display: block;
+            margin-bottom: 1rem;
+            color: var(--yellow);
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+        }
+
+        .social-proof {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2rem, 6vw, 4rem);
+            border: 1px solid var(--line-yellow);
+            border-radius: var(--radius-lg);
+            background:
+                radial-gradient(circle at 80% 20%, rgba(255, 208, 0, 0.15), transparent 18rem),
+                linear-gradient(145deg, var(--surface-strong), var(--black-soft));
+            box-shadow: var(--shadow);
+        }
+
+        .social-proof-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .social-proof h2 {
+            max-width: 15ch;
+            margin-bottom: 0.9rem;
+            font-size: clamp(2rem, 4vw, 3.3rem);
+        }
+
+        .social-proof p {
+            max-width: 39rem;
+            margin-bottom: 0;
+            color: var(--muted);
+        }
+
+        .instagram-mark {
+            display: grid;
+            width: clamp(6rem, 12vw, 9rem);
+            height: clamp(6rem, 12vw, 9rem);
+            place-items: center;
+            border: 1px solid var(--line-yellow);
+            border-radius: 2rem;
+            background: var(--yellow);
+            color: var(--black);
+            transform: rotate(4deg);
+        }
+
+        .instagram-mark svg {
+            width: 48%;
+            height: 48%;
+        }
+
+        .social-proof-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.6rem;
+        }
+
+        .faq-list {
+            display: grid;
+            max-width: 52rem;
+            gap: 0.8rem;
+            margin-inline: auto;
+        }
+
+        .faq-item {
+            overflow: clip;
+            border: 1px solid var(--line);
+            border-radius: 1rem;
+            background: var(--surface);
+        }
+
+        .faq-item[open] {
+            border-color: var(--line-yellow);
+        }
+
+        .faq-item summary {
+            display: flex;
+            min-height: 4.4rem;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.2rem;
+            cursor: pointer;
+            font-weight: 800;
+            list-style: none;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            display: grid;
+            width: 1.8rem;
+            height: 1.8rem;
+            flex: 0 0 auto;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(255, 208, 0, 0.1);
+            color: var(--yellow);
+            content: "+";
+            font-size: 1.25rem;
+            line-height: 1;
+            transition: transform 180ms ease;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.2rem 1.25rem;
+            color: var(--muted);
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: clamp(2rem, 7vw, 6rem);
+        }
+
+        .contact-copy .lead {
+            max-width: 34rem;
+        }
+
+        .contact-list {
+            display: grid;
+            gap: 0.85rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 1rem;
+            border: 1px solid var(--line);
+            border-radius: 1rem;
+            background: var(--surface);
+            color: var(--muted-strong);
+            text-decoration: none;
+            transition: border-color 180ms ease, transform 180ms ease;
+        }
+
+        a.contact-item:hover {
+            transform: translateX(4px);
+            border-color: var(--line-yellow);
+        }
+
+        .contact-icon {
+            display: grid;
+            width: 2.7rem;
+            height: 2.7rem;
+            flex: 0 0 auto;
+            place-items: center;
+            border-radius: 0.8rem;
+            background: rgba(255, 208, 0, 0.1);
+            color: var(--yellow);
+        }
+
+        .contact-icon svg {
+            width: 1.3rem;
+            height: 1.3rem;
+        }
+
+        .contact-item strong,
+        .contact-item span {
+            display: block;
+        }
+
+        .contact-item strong {
+            color: var(--white);
+            font-size: 0.92rem;
+        }
+
+        .contact-item span {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .contact-card {
+            display: grid;
+            align-content: center;
+            min-height: 100%;
+            padding: clamp(1.6rem, 5vw, 3rem);
+            border: 1px solid var(--line-yellow);
+            border-radius: var(--radius-lg);
+            background:
+                linear-gradient(150deg, rgba(255, 208, 0, 0.085), transparent 45%),
+                var(--surface);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-card h3 {
+            font-size: clamp(1.65rem, 3vw, 2.4rem);
+        }
+
+        .contact-card p {
+            color: var(--muted);
+        }
+
+        .contact-card-actions {
+            display: grid;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .contact-honesty {
+            margin: 1rem 0 0;
+            color: var(--muted);
+            font-size: 0.78rem;
+            text-align: center;
+        }
+
+        .site-footer {
+            padding-block: 3.2rem 6rem;
+            border-top: 1px solid var(--line);
+            background: var(--black-soft);
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr 0.8fr;
+            gap: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .footer-brand p {
+            max-width: 31rem;
+            margin: 1rem 0 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-group h2 {
+            margin-bottom: 0.7rem;
+            font-size: 0.9rem;
+            letter-spacing: 0;
+        }
+
+        .footer-links {
+            display: grid;
+            gap: 0.5rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            font-size: 0.88rem;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--yellow);
+            text-decoration: underline;
+            text-underline-offset: 0.2rem;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .course-dialog {
+            width: min(calc(100% - 2rem), 40rem);
+            max-height: min(46rem, calc(100dvh - 2rem));
+            padding: 0;
+            border: 1px solid var(--line-yellow);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            color: var(--text);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.7);
+        }
+
+        .course-dialog::backdrop {
+            background: rgba(0, 0, 0, 0.82);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+        }
+
+        .dialog-inner {
+            position: relative;
+            overflow: auto;
+            max-height: min(46rem, calc(100dvh - 2rem));
+            padding: clamp(1.4rem, 5vw, 2.4rem);
+        }
+
+        .dialog-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: grid;
+            width: 2.6rem;
+            height: 2.6rem;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: 0.75rem;
+            background: var(--black-soft);
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        .dialog-close svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .dialog-kicker {
+            margin-bottom: 0.55rem;
+            color: var(--yellow);
+            font-size: 0.78rem;
+            font-weight: 850;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .course-dialog h2 {
+            max-width: calc(100% - 3rem);
+            font-size: clamp(1.9rem, 5vw, 2.8rem);
+        }
+
+        .dialog-description {
+            color: var(--muted);
+        }
+
+        .dialog-list {
+            display: grid;
+            gap: 0.65rem;
+            margin: 1.5rem 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .dialog-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            color: var(--muted-strong);
+        }
+
+        .dialog-list li::before {
+            display: grid;
+            width: 1.25rem;
+            height: 1.25rem;
+            flex: 0 0 auto;
+            place-items: center;
+            margin-top: 0.13rem;
+            border-radius: 50%;
+            background: rgba(102, 217, 155, 0.13);
+            color: var(--success);
+            content: "✓";
+            font-size: 0.75rem;
+            font-weight: 900;
+        }
+
+        .dialog-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .mobile-cta {
+            position: fixed;
+            z-index: 90;
+            right: 0.8rem;
+            bottom: 0.8rem;
+            left: 0.8rem;
+            display: none;
+            min-height: 3.2rem;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 999px;
+            background: var(--yellow);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.48);
+            color: var(--black);
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .mobile-cta svg {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(1.4rem);
+            transition: opacity 600ms ease, transform 600ms ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 67rem) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: inline-flex;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr 0.88fr;
+            }
+
+            .course-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .method-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefit-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 50rem) {
+            :root {
+                --header-height: 4.25rem;
+            }
+
+            .header-cta {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-block: calc(var(--header-height) + 3rem) 4rem;
+            }
+
+            .hero-grid,
+            .outcome-wrap,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-copy {
+                text-align: center;
+            }
+
+            h1,
+            .hero-copy .lead {
+                margin-inline: auto;
+            }
+
+            .hero-actions,
+            .hero-note {
+                justify-content: center;
+            }
+
+            .hero-panel-wrap {
+                width: min(100%, 34rem);
+                margin-inline: auto;
+            }
+
+            .floating-card {
+                right: 0.6rem;
+            }
+
+            .trust-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .trust-list li:nth-child(3) {
+                border-left: 0;
+            }
+
+            .trust-list li:nth-child(n + 3) {
+                border-top: 1px solid var(--line);
+            }
+
+            .outcome-intro {
+                position: static;
+            }
+
+            .social-proof-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .instagram-mark {
+                grid-row: 1;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+
+            .mobile-cta {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 37rem) {
+            .container {
+                width: min(calc(100% - 1.25rem), var(--container));
+            }
+
+            .brand-name {
+                font-size: 0.9rem;
+            }
+
+            .hero-actions,
+            .dialog-actions,
+            .social-proof-actions {
+                display: grid;
+            }
+
+            .hero-actions .button,
+            .dialog-actions .button,
+            .social-proof-actions .button {
+                width: 100%;
+            }
+
+            .floating-card {
+                position: static;
+                max-width: none;
+                margin-top: 0.8rem;
+            }
+
+            .trust-list,
+            .course-grid,
+            .method-grid,
+            .benefit-grid,
+            .outcome-grid,
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-list li + li,
+            .trust-list li:nth-child(3) {
+                border-top: 1px solid var(--line);
+                border-left: 0;
+            }
+
+            .course-card {
+                min-height: auto;
+            }
+
+            .footer-brand {
+                grid-column: auto;
+            }
+
+            .footer-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
+
+    <header class="site-header" id="site-header">
+        <div class="container">
+            <div class="header-inner">
+                <a class="brand" href="#inicio" aria-label="Aprova Informática — início">
+                    <span class="brand-mark" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" fill="none">
+                            <path d="M4 12.5 16 6l12 6.5L16 19 4 12.5Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                            <path d="M8.5 16v6c4.5 3.8 10.5 3.8 15 0v-6M28 13v7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <span class="brand-name">Aprova <span class="accent">Informática</span></span>
+                </a>
+
+                <nav class="desktop-nav" aria-label="Navegação principal">
+                    <a class="nav-link" href="#cursos">Cursos</a>
+                    <a class="nav-link" href="#metodologia">Como funciona</a>
+                    <a class="nav-link" href="#diferenciais">Diferenciais</a>
+                    <a class="nav-link" href="#faq">Dúvidas</a>
+                    <a class="nav-link" href="#contato">Contato</a>
+                </nav>
+
+                <div class="header-actions">
+                    <a
+                        class="button button--primary header-cta"
+                        href="https://linktr.ee/aaprovacurso"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-track="header_contact"
+                    >
+                        Quero informações
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M13 6l6 6-6 6"/>
+                        </svg>
+                    </a>
+                    <button
+                        class="menu-toggle"
+                        id="menu-toggle"
+                        type="button"
+                        aria-controls="mobile-navigation"
+                        aria-expanded="false"
+                        aria-label="Abrir menu"
+                    >
+                        <svg class="menu-open-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                        <svg class="menu-close-icon" aria-hidden="true" hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="m6 6 12 12M18 6 6 18"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <nav class="mobile-nav" id="mobile-navigation" aria-label="Navegação móvel" hidden>
+                <div class="mobile-nav-list">
+                    <a class="nav-link" href="#cursos">Cursos</a>
+                    <a class="nav-link" href="#metodologia">Como funciona</a>
+                    <a class="nav-link" href="#diferenciais">Diferenciais</a>
+                    <a class="nav-link" href="#faq">Dúvidas</a>
+                    <a class="nav-link" href="#contato">Contato</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+        <section class="hero" id="inicio" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div class="hero-copy reveal">
+                    <div class="hero-badge">
+                        <span class="hero-badge-dot" aria-hidden="true"></span>
+                        Educação + Tecnologia em Lago dos Rodrigues
+                    </div>
+                    <h1 id="hero-title">
+                        Aprenda informática para <span class="accent">avançar de verdade.</span>
+                    </h1>
+                    <p class="lead">
+                        Aulas práticas de Informática Básica, Pacote Office, Excel e ferramentas digitais para desenvolver autonomia nos estudos, no trabalho e no dia a dia.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button button--primary" href="#cursos" data-track="hero_courses">
+                            Conhecer os cursos
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M13 6l6 6-6 6"/>
+                            </svg>
+                        </a>
+                        <a
+                            class="button button--secondary"
+                            href="https://www.instagram.com/aaprovainformatica/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-track="hero_instagram"
+                        >
+                            Falar no Instagram
+                        </a>
+                    </div>
+                    <ul class="hero-note" aria-label="Destaques dos cursos">
+                        <li><span class="check-dot" aria-hidden="true">✓</span> Ensino prático</li>
+                        <li><span class="check-dot" aria-hidden="true">✓</span> Acompanhamento</li>
+                        <li><span class="check-dot" aria-hidden="true">✓</span> Certificado</li>
+                    </ul>
+                </div>
+
+                <div class="hero-panel-wrap reveal" data-delay="120">
+                    <div class="hero-panel" aria-label="Etapas da jornada de aprendizagem">
+                        <div class="panel-head">
+                            <span class="panel-label">Sua jornada digital</span>
+                            <span class="panel-chip">Aulas práticas</span>
+                        </div>
+                        <ol class="journey">
+                            <li class="journey-item">
+                                <span class="journey-number">01</span>
+                                <span class="journey-copy">
+                                    <strong>Aprenda</strong>
+                                    <span>Explicações claras e objetivas</span>
+                                </span>
+                                <span class="journey-status">Comece</span>
+                            </li>
+                            <li class="journey-item">
+                                <span class="journey-number">02</span>
+                                <span class="journey-copy">
+                                    <strong>Pratique</strong>
+                                    <span>Atividades orientadas em cada etapa</span>
+                                </span>
+                                <span class="journey-status">Evolua</span>
+                            </li>
+                            <li class="journey-item">
+                                <span class="journey-number">03</span>
+                                <span class="journey-copy">
+                                    <strong>Aplique</strong>
+                                    <span>Habilidades úteis para a vida real</span>
+                                </span>
+                                <span class="journey-status">Avance</span>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="floating-card">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 10 12 5 2 10l10 5 10-5Z"/>
+                            <path d="M6 12v5c0 1.6 2.7 3 6 3s6-1.4 6-3v-5M22 10v5"/>
+                        </svg>
+                        Conhecimento que vira oportunidade.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="trust-strip" aria-label="Informações principais">
+            <div class="container">
+                <ul class="trust-list">
+                    <li>
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18v13H3zM8 21h8M12 17v4"/></svg>
+                        Conteúdo aplicado
+                    </li>
+                    <li>
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m4 13 4 4L20 5"/></svg>
+                        Aprenda no seu ritmo
+                    </li>
+                    <li>
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15Z"/><path d="M8 7h8M8 11h6"/></svg>
+                        Material estruturado
+                    </li>
+                    <li>
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                        Lago dos Rodrigues - MA
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="section section--soft" id="cursos" aria-labelledby="courses-title">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">Nossos cursos</p>
+                    <h2 id="courses-title">Escolha por onde você quer <span class="accent">começar.</span></h2>
+                    <p class="lead">Formações pensadas para transformar conteúdo em habilidade prática.</p>
+                </div>
+
+                <div class="course-grid">
+                    <article class="course-card reveal">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="M8 21h8M12 16v5"/></svg>
+                        </div>
+                        <span class="course-tag">Para começar</span>
+                        <h3>Informática Básica</h3>
+                        <p>Construa segurança para usar o computador, organizar arquivos e navegar pelas ferramentas essenciais.</p>
+                        <button class="text-link" type="button" data-course="informatica" data-track="course_informatica">
+                            Ver detalhes
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </button>
+                    </article>
+
+                    <article class="course-card reveal" data-delay="80">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>
+                        </div>
+                        <span class="course-tag">Produtividade</span>
+                        <h3>Pacote Office</h3>
+                        <p>Desenvolva documentos, apresentações e atividades com ferramentas usadas nos estudos e no trabalho.</p>
+                        <button class="text-link" type="button" data-course="office" data-track="course_office">
+                            Ver detalhes
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </button>
+                    </article>
+
+                    <article class="course-card reveal" data-delay="160">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+                        </div>
+                        <span class="course-tag">Dados e planilhas</span>
+                        <h3>Excel</h3>
+                        <p>Aprenda a organizar informações, utilizar fórmulas e transformar dados em planilhas mais úteis.</p>
+                        <button class="text-link" type="button" data-course="excel" data-track="course_excel">
+                            Ver detalhes
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </button>
+                    </article>
+
+                    <article class="course-card reveal" data-delay="240">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-9 12h8l-1 8 9-12h-8l1-8Z"/></svg>
+                        </div>
+                        <span class="course-tag">Mundo digital</span>
+                        <h3>Tecnologia</h3>
+                        <p>Conheça ferramentas digitais, práticas de segurança e recursos que facilitam sua rotina.</p>
+                        <button class="text-link" type="button" data-course="tecnologia" data-track="course_tecnologia">
+                            Ver detalhes
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="metodologia" aria-labelledby="method-title">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">Como funciona</p>
+                    <h2 id="method-title">Um caminho simples para <span class="accent">aprender melhor.</span></h2>
+                    <p class="lead">Cada etapa aproxima você do uso confiante e independente da tecnologia.</p>
+                </div>
+
+                <div class="method-grid">
+                    <article class="method-step reveal">
+                        <h3>Entenda</h3>
+                        <p>Conceitos apresentados de forma clara, com linguagem acessível.</p>
+                    </article>
+                    <article class="method-step reveal" data-delay="70">
+                        <h3>Pratique</h3>
+                        <p>Atividades guiadas para aprender fazendo e tirar dúvidas.</p>
+                    </article>
+                    <article class="method-step reveal" data-delay="140">
+                        <h3>Desenvolva</h3>
+                        <p>Desafios que fortalecem a autonomia e consolidam o aprendizado.</p>
+                    </article>
+                    <article class="method-step reveal" data-delay="210">
+                        <h3>Aplique</h3>
+                        <p>Conhecimentos conectados às necessidades dos estudos e do trabalho.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--soft" id="diferenciais" aria-labelledby="benefits-title">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">Diferenciais</p>
+                    <h2 id="benefits-title">Aprendizado com <span class="accent">propósito e acompanhamento.</span></h2>
+                </div>
+
+                <div class="benefit-grid">
+                    <article class="benefit-card reveal">
+                        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="m16 8 5-5M18 3h3v3"/></svg></div>
+                        <div><h3>Ensino prático</h3><p>Exercícios relacionados a situações reais e úteis.</p></div>
+                    </article>
+                    <article class="benefit-card reveal" data-delay="60">
+                        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></div>
+                        <div><h3>Acompanhamento</h3><p>Orientação próxima ao longo da jornada de aprendizagem.</p></div>
+                    </article>
+                    <article class="benefit-card reveal" data-delay="120">
+                        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-5"/></svg></div>
+                        <div><h3>Conteúdo relevante</h3><p>Conhecimentos alinhados ao uso atual da tecnologia.</p></div>
+                    </article>
+                    <article class="benefit-card reveal">
+                        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-7"/></svg></div>
+                        <div><h3>Foco em evolução</h3><p>Passos progressivos para desenvolver mais confiança.</p></div>
+                    </article>
+                    <article class="benefit-card reveal" data-delay="60">
+                        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+                        <div><h3>Ambiente tecnológico</h3><p>Aprendizado pensado para desenvolver habilidades digitais.</p></div>
+                    </article>
+                    <article class="benefit-card reveal" data-delay="120">
+                        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-1.5 10 5-3 5 3-1.5-10"/></svg></div>
+                        <div><h3>Certificado</h3><p>Reconhecimento da participação e conclusão das atividades.</p></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="outcomes-title">
+            <div class="container outcome-wrap">
+                <div class="outcome-intro reveal">
+                    <p class="eyebrow">O que você desenvolve</p>
+                    <h2 id="outcomes-title">Mais que conteúdo: <span class="accent">habilidades para usar.</span></h2>
+                    <p class="lead">O objetivo é fazer você se sentir mais preparado para lidar com as demandas do mundo digital.</p>
+                </div>
+                <div class="outcome-grid">
+                    <article class="outcome-card reveal">
+                        <span class="outcome-number">01</span>
+                        <h3>Autonomia digital</h3>
+                        <p>Use ferramentas e recursos com mais independência e segurança.</p>
+                    </article>
+                    <article class="outcome-card reveal" data-delay="70">
+                        <span class="outcome-number">02</span>
+                        <h3>Produtividade</h3>
+                        <p>Organize tarefas, documentos e informações com mais agilidade.</p>
+                    </article>
+                    <article class="outcome-card reveal">
+                        <span class="outcome-number">03</span>
+                        <h3>Confiança</h3>
+                        <p>Supere inseguranças e avance passo a passo no uso da tecnologia.</p>
+                    </article>
+                    <article class="outcome-card reveal" data-delay="70">
+                        <span class="outcome-number">04</span>
+                        <h3>Preparação profissional</h3>
+                        <p>Construa habilidades valorizadas em diferentes áreas de trabalho.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--soft" aria-labelledby="instagram-title">
+            <div class="container">
+                <div class="social-proof reveal">
+                    <div class="social-proof-grid">
+                        <div>
+                            <p class="eyebrow">Acompanhe a Aprova</p>
+                            <h2 id="instagram-title">Veja novidades e conteúdos no <span class="accent">Instagram.</span></h2>
+                            <p>Acompanhe turmas, avisos, conteúdos e atualizações diretamente no perfil oficial da Aprova Informática.</p>
+                            <div class="social-proof-actions">
+                                <a
+                                    class="button button--primary"
+                                    href="https://www.instagram.com/aaprovainformatica/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-track="instagram_section"
+                                >
+                                    @aaprovainformatica
+                                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                                </a>
+                                <a
+                                    class="button button--secondary"
+                                    href="https://linktr.ee/aaprovacurso"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-track="linktree_section"
+                                >Ver canais de atendimento</a>
+                            </div>
+                        </div>
+                        <div class="instagram-mark" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.7" cy="6.3" r="1" fill="currentColor" stroke="none"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="faq" aria-labelledby="faq-title">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">Dúvidas</p>
+                    <h2 id="faq-title">Perguntas <span class="accent">frequentes.</span></h2>
+                </div>
+
+                <div class="faq-list">
+                    <details class="faq-item reveal">
+                        <summary>Quais cursos estão disponíveis?</summary>
+                        <div class="faq-answer"><p>Informática Básica, Pacote Office, Excel e Tecnologia. Consulte a equipe para conhecer as turmas disponíveis no momento.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary>Como faço minha matrícula?</summary>
+                        <div class="faq-answer"><p>Entre em contato pelo Instagram ou pelos canais disponíveis no Linktree. A equipe explicará as próximas etapas.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary>Os cursos oferecem certificado?</summary>
+                        <div class="faq-answer"><p>Sim. Os cursos contam com certificado de conclusão conforme os critérios informados para cada turma.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary>Preciso já saber usar computador?</summary>
+                        <div class="faq-answer"><p>Não. O curso de Informática Básica foi pensado para quem deseja começar e desenvolver confiança passo a passo.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary>Qual é a duração dos cursos?</summary>
+                        <div class="faq-answer"><p>A duração pode variar de acordo com o curso e a turma. Entre em contato para receber as informações atualizadas.</p></div>
+                    </details>
+                    <details class="faq-item reveal">
+                        <summary>Onde acontecem as aulas?</summary>
+                        <div class="faq-answer"><p>A Aprova Informática atende em Lago dos Rodrigues - MA. Consulte a equipe para confirmar local, horários e modalidades disponíveis.</p></div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--soft" id="contato" aria-labelledby="contact-title">
+            <div class="container contact-grid">
+                <div class="contact-copy reveal">
+                    <p class="eyebrow">Contato</p>
+                    <h2 id="contact-title">Seu próximo passo pode <span class="accent">começar agora.</span></h2>
+                    <p class="lead">Escolha um canal oficial para conversar com a equipe e saber mais sobre cursos, horários e matrículas.</p>
+
+                    <div class="contact-list">
+                        <a class="contact-item" href="https://www.instagram.com/aaprovainformatica/" target="_blank" rel="noopener noreferrer" data-track="contact_instagram">
+                            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.7" cy="6.3" r="1" fill="currentColor" stroke="none"/></svg></span>
+                            <span><strong>Instagram</strong><span>@aaprovainformatica</span></span>
+                        </a>
+                        <a class="contact-item" href="https://linktr.ee/aaprovacurso" target="_blank" rel="noopener noreferrer" data-track="contact_linktree">
+                            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"/></svg></span>
+                            <span><strong>Canais de atendimento</strong><span>linktr.ee/aaprovacurso</span></span>
+                        </a>
+                        <div class="contact-item">
+                            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+                            <span><strong>Localização</strong><span>Lago dos Rodrigues - MA</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="contact-card reveal" data-delay="100" aria-label="Canais de atendimento">
+                    <p class="eyebrow">Fale com a equipe</p>
+                    <h3>Quer descobrir qual curso combina com você?</h3>
+                    <p>Acesse um canal oficial e envie sua dúvida. Assim, você recebe informações atualizadas sem preencher formulários que não seriam enviados.</p>
+                    <div class="contact-card-actions">
+                        <a class="button button--primary" href="https://www.instagram.com/aaprovainformatica/" target="_blank" rel="noopener noreferrer" data-track="contact_card_instagram">Conversar pelo Instagram</a>
+                        <a class="button button--secondary" href="https://linktr.ee/aaprovacurso" target="_blank" rel="noopener noreferrer" data-track="contact_card_linktree">Ver todos os canais</a>
+                        <a class="button button--secondary" id="whatsapp-button" href="https://linktr.ee/aaprovacurso" target="_blank" rel="noopener noreferrer" data-track="contact_whatsapp" hidden>Falar pelo WhatsApp</a>
+                    </div>
+                    <p class="contact-honesty">Atendimento realizado pelos canais oficiais da Aprova Informática.</p>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a class="brand" href="#inicio" aria-label="Aprova Informática — voltar ao início">
+                        <span class="brand-mark" aria-hidden="true">
+                            <svg viewBox="0 0 32 32" fill="none"><path d="M4 12.5 16 6l12 6.5L16 19 4 12.5Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M8.5 16v6c4.5 3.8 10.5 3.8 15 0v-6M28 13v7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span class="brand-name">Aprova <span class="accent">Informática</span></span>
+                    </a>
+                    <p>Educação e tecnologia para transformar conhecimento em autonomia, confiança e novas oportunidades.</p>
+                </div>
+                <div class="footer-group">
+                    <h2>Navegação</h2>
+                    <ul class="footer-links">
+                        <li><a href="#cursos">Cursos</a></li>
+                        <li><a href="#metodologia">Como funciona</a></li>
+                        <li><a href="#diferenciais">Diferenciais</a></li>
+                        <li><a href="#faq">Dúvidas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-group">
+                    <h2>Contato</h2>
+                    <ul class="footer-links">
+                        <li><a href="https://www.instagram.com/aaprovainformatica/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://linktr.ee/aaprovacurso" target="_blank" rel="noopener noreferrer">Linktree</a></li>
+                        <li><a href="#contato">Lago dos Rodrigues - MA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span id="current-year">2026</span> Aprova Informática. Todos os direitos reservados.</span>
+                <span>Educação + Tecnologia = <strong class="accent">Futuro</strong></span>
+            </div>
+        </div>
+    </footer>
+
+    <dialog class="course-dialog" id="course-dialog" aria-labelledby="dialog-title">
+        <div class="dialog-inner">
+            <button class="dialog-close" type="button" aria-label="Fechar detalhes do curso" data-dialog-close>
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+            </button>
+            <p class="dialog-kicker">Detalhes do curso</p>
+            <h2 id="dialog-title"></h2>
+            <p class="dialog-description" id="dialog-description"></p>
+            <h3>Você vai desenvolver:</h3>
+            <ul class="dialog-list" id="dialog-list"></ul>
+            <div class="dialog-actions">
+                <a class="button button--primary" href="#contato" id="dialog-contact" data-dialog-close data-track="dialog_contact">Quero informações</a>
+                <button class="button button--secondary" type="button" data-dialog-close>Continuar vendo cursos</button>
+            </div>
+        </div>
+    </dialog>
+
+    <a
+        class="mobile-cta"
+        href="https://linktr.ee/aaprovacurso"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track="mobile_sticky_contact"
+    >
+        Quero informações
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <script>
+        (() => {
+            'use strict';
+
+            const SITE_CONFIG = Object.freeze({
+                // Adicione somente os números, com DDI e DDD. Exemplo: 5598999999999.
+                whatsappNumber: '',
+                whatsappMessage: 'Olá! Quero informações sobre os cursos da Aprova Informática.'
+            });
+
+            const COURSE_DATA = Object.freeze({
+                informatica: {
+                    title: 'Informática Básica',
+                    description: 'Uma formação para começar com tranquilidade e construir autonomia no uso do computador e da internet.',
+                    topics: [
+                        'Conhecer as principais partes e funções do computador',
+                        'Organizar pastas, arquivos e documentos',
+                        'Navegar na internet com mais segurança',
+                        'Utilizar recursos digitais do dia a dia'
+                    ]
+                },
+                office: {
+                    title: 'Pacote Office',
+                    description: 'Ferramentas essenciais para produzir trabalhos, documentos e apresentações com mais qualidade e organização.',
+                    topics: [
+                        'Criar e formatar documentos no Word',
+                        'Produzir apresentações no PowerPoint',
+                        'Organizar atividades e arquivos de trabalho',
+                        'Aplicar recursos de produtividade'
+                    ]
+                },
+                excel: {
+                    title: 'Excel',
+                    description: 'Aprenda a transformar informações em planilhas organizadas e úteis para diferentes necessidades.',
+                    topics: [
+                        'Criar e organizar planilhas',
+                        'Aplicar fórmulas e funções essenciais',
+                        'Formatar tabelas e informações',
+                        'Interpretar dados com mais clareza'
+                    ]
+                },
+                tecnologia: {
+                    title: 'Tecnologia e Ferramentas Digitais',
+                    description: 'Conhecimentos para utilizar melhor os recursos digitais e acompanhar as mudanças do mundo conectado.',
+                    topics: [
+                        'Conhecer ferramentas digitais úteis',
+                        'Adotar práticas básicas de segurança',
+                        'Organizar tarefas e informações online',
+                        'Usar a tecnologia com mais autonomia'
+                    ]
+                }
+            });
+
+            const header = document.querySelector('#site-header');
+            const menuToggle = document.querySelector('#menu-toggle');
+            const mobileNavigation = document.querySelector('#mobile-navigation');
+            const menuOpenIcon = menuToggle?.querySelector('.menu-open-icon');
+            const menuCloseIcon = menuToggle?.querySelector('.menu-close-icon');
+            const courseDialog = document.querySelector('#course-dialog');
+            let lastDialogTrigger = null;
+
+            const setMenuState = (isOpen) => {
+                if (!menuToggle || !mobileNavigation) return;
+                menuToggle.setAttribute('aria-expanded', String(isOpen));
+                menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+                mobileNavigation.hidden = !isOpen;
+                if (menuOpenIcon) menuOpenIcon.hidden = isOpen;
+                if (menuCloseIcon) menuCloseIcon.hidden = !isOpen;
+                header?.classList.toggle('menu-active', isOpen);
+                document.body.classList.toggle('menu-open', isOpen);
+            };
+
+            menuToggle?.addEventListener('click', () => {
+                const isOpen = menuToggle.getAttribute('aria-expanded') !== 'true';
+                setMenuState(isOpen);
+            });
+
+            mobileNavigation?.addEventListener('click', (event) => {
+                if (event.target.closest('a')) setMenuState(false);
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 1072) setMenuState(false);
+            });
+
+            window.addEventListener('scroll', () => {
+                header?.classList.toggle('is-scrolled', window.scrollY > 24);
+            }, { passive: true });
+
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const revealItems = document.querySelectorAll('.reveal');
+
+            if (reducedMotion || !('IntersectionObserver' in window)) {
+                revealItems.forEach((item) => item.classList.add('is-visible'));
+            } else {
+                const revealObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        const delay = Number(entry.target.dataset.delay || 0);
+                        window.setTimeout(() => entry.target.classList.add('is-visible'), delay);
+                        observer.unobserve(entry.target);
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+
+                revealItems.forEach((item) => revealObserver.observe(item));
+            }
+
+            document.querySelectorAll('.faq-item').forEach((faq) => {
+                faq.addEventListener('toggle', () => {
+                    if (!faq.open) return;
+                    document.querySelectorAll('.faq-item[open]').forEach((other) => {
+                        if (other !== faq) other.open = false;
+                    });
+                });
+            });
+
+            const closeDialog = () => {
+                if (!courseDialog?.open) return;
+                courseDialog.close();
+            };
+
+            const openCourseDialog = (courseKey, trigger) => {
+                const course = COURSE_DATA[courseKey];
+                if (!course || !courseDialog) return;
+
+                lastDialogTrigger = trigger;
+                courseDialog.querySelector('#dialog-title').textContent = course.title;
+                courseDialog.querySelector('#dialog-description').textContent = course.description;
+
+                const list = courseDialog.querySelector('#dialog-list');
+                list.replaceChildren(...course.topics.map((topic) => {
+                    const item = document.createElement('li');
+                    item.textContent = topic;
+                    return item;
+                }));
+
+                courseDialog.showModal();
+                document.body.classList.add('dialog-open');
+            };
+
+            document.querySelectorAll('[data-course]').forEach((button) => {
+                button.addEventListener('click', () => openCourseDialog(button.dataset.course, button));
+            });
+
+            courseDialog?.querySelectorAll('[data-dialog-close]').forEach((control) => {
+                control.addEventListener('click', () => {
+                    if (control.matches('a[href^="#"]')) lastDialogTrigger = null;
+                    closeDialog();
+                });
+            });
+
+            courseDialog?.addEventListener('click', (event) => {
+                const bounds = courseDialog.getBoundingClientRect();
+                const clickedOutside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
+                if (clickedOutside) closeDialog();
+            });
+
+            courseDialog?.addEventListener('close', () => {
+                document.body.classList.remove('dialog-open');
+                lastDialogTrigger?.focus();
+                lastDialogTrigger = null;
+            });
+
+            const whatsappButton = document.querySelector('#whatsapp-button');
+            if (SITE_CONFIG.whatsappNumber && whatsappButton) {
+                const number = SITE_CONFIG.whatsappNumber.replace(/\D/g, '');
+                const message = encodeURIComponent(SITE_CONFIG.whatsappMessage);
+                whatsappButton.href = `https://wa.me/${number}?text=${message}`;
+                whatsappButton.hidden = false;
+            }
+
+            document.querySelector('#current-year').textContent = String(new Date().getFullYear());
+
+            document.addEventListener('click', (event) => {
+                const trackedElement = event.target.closest('[data-track]');
+                if (!trackedElement) return;
+
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'landing_page_click',
+                    element: trackedElement.dataset.track
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
