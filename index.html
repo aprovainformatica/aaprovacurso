@@ -82,6 +82,21 @@
     }
     </script>
 
+    <script>
+        (() => {
+            try {
+                const storedTheme = localStorage.getItem('aprova-theme');
+                const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                const validStoredTheme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : null;
+                const initialTheme = validStoredTheme || systemTheme;
+                document.documentElement.dataset.theme = initialTheme;
+                document.querySelector('meta[name="theme-color"]')?.setAttribute('content', initialTheme === 'light' ? '#ffffff' : '#050505');
+            } catch {
+                document.documentElement.dataset.theme = 'dark';
+            }
+        })();
+    </script>
+
     <style>
         :root {
             --black: #050505;
@@ -89,6 +104,7 @@
             --surface: #121212;
             --surface-strong: #181818;
             --yellow: #ffd000;
+            --yellow-hover: #ffda24;
             --yellow-dark: #e8bd00;
             --white: #ffffff;
             --text: #f7f7f7;
@@ -97,12 +113,51 @@
             --line: rgba(255, 255, 255, 0.11);
             --line-yellow: rgba(255, 208, 0, 0.32);
             --success: #66d99b;
+            --ink-on-yellow: #050505;
+            --secondary-border: rgba(255, 255, 255, 0.25);
+            --subtle-fill: rgba(255, 255, 255, 0.03);
+            --subtle-fill-strong: rgba(255, 255, 255, 0.055);
+            --header-background: rgba(5, 5, 5, 0.92);
+            --panel-border: rgba(255, 255, 255, 0.13);
+            --panel-background: linear-gradient(145deg, rgba(24, 24, 24, 0.97), rgba(9, 9, 9, 0.94));
+            --floating-background: rgba(13, 13, 13, 0.96);
+            --brand-logo: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABqCAYAAABkrdW2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAOF1JREFUeAHlfQegFdW19jftlFsPHRS4lw6KCKKIFTQaW+z+0ehLBF98MSYx1lgSFWPNbwlGE/OSGDXvpfliiEnU2CIKdmkWUBC4FKVz+72nzez/W3tmzj23V9C8f+lwT5kzs/dee7Vvrb3HwL8QxWKxcs/zpqqsKjcs40DDQEIB5fwqoZRKGIaRkPP4usPr8PsqnlvFl+FRwc828FhummZFJpNZjn8RMvA5pQSprq5uqmUYp3vAVH40NWRQZ9QZAzv6He8hL6vIyOV8/zInzMJsNrsQn1P6XDFQmFZfXz+Hg3c6B29qVyWqJeWfHzCkze+6SsE1/sLfPknpXMjXFfic0OeCgbZtz7Ys62ZRj3ybIAPzpUFTdwa+rxnYxnX+wuOxdDr9F3zG9FkyMBGJRL7LAb1cJC3HMBlg/m058EI9Hfy+uEZb7YFvO2/JWJTK5GcjlXufgVSTkWTDdz2Fyw3f+YApzRC+8VBG+wwU6gsm7gGq4PEoNcdjyWSyAnuR9hoDxb4l08nvelnv8sBj1EzS7BDpyzXFZ2B36HPE1Aoej1K13oK9RHuFgYGNewS+y5+Trr4a+M+bVLI9FfxzCx2eR7GHycIepFgiUU4ZW2Aa5jxRl/nftXRS/peR9PUMTlqJW1fAjzX3CO0xBsYKCy9006m/kEkT5X1LVvUl80J1bHRgO4X2xqRpoQ2mUvucQdtYTUbuEXCgzxkoto6duFO57l2mYcRkuD5bOVO5FvjMa3q/lyiUxgSZ+CZfJ9GH1Kc9EaiLMvBS1s2WW4zlEExG1cu7tLRxTVIUOEHIwu+KzEcFz8hqj9ZQJsI5quDCFKfJM7W7K+/lUwOm38Dgkn3B3vYkXWwj7eIx6EMgwEQfUayoaLbyvGWe8sp1IA5/XPqCeR07KfzOJDPMLBnnwUOE/LH154TgYHgFUFkDjplhZz3f4yVjDSV+r6UbaCjkJhv6oM0dqOnyiBN5yXGcqegj6hMVWkh752Wyf+FAxNDHNiYcjLZtHKVKGOIV84jztchT1ucnG+OqLDLZJAzT5vsIMmSghahmtkkptZR03/SnsRlcXxl9rmRbTEBRqZeQidWu676BXlKvGVhQUHBzJpudr1UWjD1iXtqe0TLgWf1KpM616+E6Sa0UM8pBNpNGWSKGf//aGGzcvBO7qzP8Lgo7moFrkJWmhQyZKpc2NIIQ3GcvmMdAxZ5Iuwgy8WX0gnqlQmnzbmYD5oltkRms+rDzoepsS4Xqzyh9iurRo/TBqoXpReHWmXAbMzj2kDiWPH8E1n8yBffcZWLjhhOw9PkDcOJRcWTq08g2RGGkHcBpoLympOmAtolyeMGx50gDGH6/5hFOvBm9oB4PuTCPXtW8XIN8NIxqDD0klfdKnA0fW8u5K4Y/1/TsNcObGUhnKFlZFwOKbNxwyShc/M19UDx4J9SWLTD6DwBKC4CdNYzEdgH7DkNtzUg88tAnuPfX67FxSyMsx4HtGPCy4uRYvJ8LTzfFDu4sTDXz2tjzWdrWRAyYOY8pq1vQA+qRBNJJ+S7/zGtmkwIsszvkmr4nCDodhorwr8PORHxHw0jTRsk1abM4mErxXNo0h/bMyxhIpdJINyYx+8BBWLzgYOzcPhNXXrUDxe5boEbF9vQUXP2DOEYMXYFbbzOxA9N5GQeF1e/gsm8ksWH9YVj58ok44dCBSDWkkUkrZE2R7GJKMwfVTPN1ho0s1pPS8nh/kXJOJDkvq0eONtfLdtrP9hyxUBL5dx5t4oXoAfVkOh1YEC9Y7kqHekmehrE97Ygo7dqLBxh4hdrBF4YyJDBS/KwISZeDymNwIoIffLMcX71oMBKjUnA3LYVZuC+lbRJeXrABV9+2BUver4Jp24iU9kOymhKYTWHW9ATmXT8Gs08aBFSugVtZAWvcIajcMQi/uH897v/Vh9hS5fF+EcRMjzbVd3s8TiyTzDTZZ8vw2w0jCt9lTcHXEx0DCF0hnndMd5PH3WVgeTQee0lCBSPPTPQU3TC8CBmW5u8zAQPpLXoWRJGlrYyWUMOloU/KdE/j8Kn9cffNE3H4KXEyYC1QvRsYORp124fjofu34e6fL8eOehex+CDEHQ+Om9QOSpIMUREHqXpavGQdyoa4uOHb4/DVSyYhHuN1Nn0E9B8FFJfjuSd247a71mPRyu0QUTbiGbaTapaHsM6g52rqmDKrpZA6gZqiYynsBlZbxThxGroRJ3Zn5BNk3jI6LeXENmmjvGaM6wkTw/hL4m2DzPNcvrBcZB3O6kaqF9fF0BIbV3xnFC75WhlKymifKl6FkehPaTsMSxbuwrw7VuPZRVvg2RZipZKaKqGDQqm1lI4L5RMzY+oQwzJk6EUN1qCuNqul6oIzxmLeTaMwegrvuX41+1UPc+QEbNk8FA/+34/wwGNrUEuHx7Zi8OJ1/J4xpRsjL8X5EXtJR97o2JnvDtjOcaxgNkOY2CX8tMujHo1Gf8zhuDxn64xWN24DgejI6Mt3oqIcznCqI87oCOdzXVoGVuHog4fi1muH44iTKY/VW+g5fgp76P5oqBqDx372IW79+Rps2Z0l5hqBU1CkwwbbKyST6rQUu5S6rEbOMrwuVTCPtCm2NKZnjEWpF1mqa0ghw98eNKEEN1+1P750XinjSDJy4zoYg8vgxSbg8T/swF33b8CKD3frCWLbbGGklsx0YWdK4VmNaJ8UepAsmU9JvKIrJ3aVgRfGCuKPMt7T6k2MutfOLw3Dh7MU/Byfb9lM+AzztGXz+yMzgTbNK2IsxG/cWiQobd+7eCq+/Y0BKB6xEd7G1TAKRsAYOAkrns/gh3e/h7++up2MiaBfcRHVq4QBUbaJHiMZB7eEV0+j0Un79srzA/OsESNDHUTITMPkeQw9smY9m8VwglJvWhE0ZhuRrqtDKfk797z98L2rhmPY2F3IrnufTluMUjkNm9dYuPfHa/Cr321AXYYjYUdg2VTTnh2gPE0IVOgf+iFmNm+4uywzc8jExzo7qStXK4vH4gsF3+xcTRo+tkjGSAf0bBdvThASHSO7GjFxqd5cox5eo6gXD4cdVII7r9sPs04h7FX5MYxaao/h+6KxdjAefbgat8xfhW27UojEihBx5Fr+hAiTwfrOIVAtmkD8KwnyySjFGFG8WENPPfjnKM9/TRWo9ED72sNj/GA5NurqGhhWpDFz/1L8ZN54HHIKJwi1gLdlJ8zh5WT+KCz47TbcPP8DrFrPiUD1alvUIK6tOZY25bqWfi3xqSEMpCPmM7hrDGQrq7JdsIedXs2JRB7hSXPQJSKDJDTIFsJnZoMeWFduI/AVO0UnkkiJi+JCBxd9rRzXX1OGISOq2cz3qaf7AQMn4L2XXNx6XwX++vJmpFwD0UIyjvaMHpokh3OqOlTbusOh+iZzLfEM6Tl6vKcw2FTi6caQFReSrzVgpLFQzw/bvfwiKP8UizOuLkOmphoxtJ+Ba84fi7nXjEW/IZXIViwnosM+7nMIKj6oxrXzNuLPf9sErZ+cYoY6DWyDID+cwFSvGkB3iyCJCE97f12WwoUB+N0udXalC2n7HpWBYdDe4Yl6APUrMkm8EpuDR1cc2YgEUfQkU3owZx/cHzd+rxyzTqO9qn2PQTYZXj6E3uFI/PKnNbj17hXYXk1mx2xY8RgcMi3KWEssGfJwUS9wolprBUNnI5RXyjZUBSEJB9bzmZafddCmAE0TINcPMs+kNGmlT1spEF2qTpiQxZdm7oM7bhuLA2bxy21r4O2gzS0fimTDYDz2cBXu/s+1WPsJbS7tpCW+jiv3prX1xJGi02N0MfyS9lgCkDC0SLYfWnTIQMI86zlE5aEJ81p4nq0uxtnPEIOaggwQrDHFgXQVEgUmrpy7H75z+UgkRuwEVpNxhYTAhs3AssU7ccf8DXjyuW3IsG9OUZHmk8XAOhZkGFzTyQdqOkgv+XLvRhiaJAsZ7CeRpZ0sLh6OjLUD0UwklyHxr9FUh9P8mpQ8yV7QPhoceGXYVPmWDh3SaV6TDR05NIYbvjMR58+1UFzA8z9eCbN0KDBkX6xaZuDWH23AH57e6OOv9JANK+kzRdnoKun5Rq+0MF4wrYrU1jkdMfCmSDx6i5kVe+U7JB3VsugUkqeCGe0S2XBx/CED8YPrxuHI4zkY1VQluzfBGD0AycwE/PLHa3HHzzZhK22baUYQL7IItMgslbSPqW2TJ/ZTD3bMdxKa9S50FpraZrANyaSgKgZKC1O45CsjcPGVR2DS/r9DAYFtlbWCHxm+EyY2SQVoUAvyBP1BWp8rEmTRhonlzDIetCw/19nYUKfbdcqxI3DPbaMx/qBauOvX8j4MO8rKkUwV4lf378AdD63Fll1pxpzFcBl+aLnvhmfKvt3C0GJem9+185tyJxZ9iSLnB+xm13S2x8EwLHqFqQasePMEjJ9Wi8y6j2FlEjBH98emd4tw2+0V+PVTa5HlTIzFo/QAOVAcIEW7ZdIRsDw/WE6TGSJ9FiXAoRrOiEqmIvUtqu2XHnqipRkuRBQa6+gReWlMmZjAj26egC+eycyWtxqIT8LcUz/G756pRKQgVPNGMIDNHaHmA+Np2+V7lVm4WgtZ9GRpW6nS5TOPbc+w7Xa6BmnGLFPGFeOOaybh5LMTHAciPat3wioj6jNwHH51305cfM07iERj2sh2sxBLAvxRaCM2bI8zN9FZuEWkSiO7XWUgJTXL2f+9OWPxo/mUntXbYZQY+GDLcBx75hpsr6Rqo2EopPo00vRC6YIrFeeA2LohZpAR0J4hBwqmH79JMGJl+1FgqL60hxeRsUQ6SW+RjsYAauPrvzEeF188BCXlZGTNNqIqCWx6fxDuuHcN/mvBJmQixYiqJinOH8C2B9PKk05D47Aa4KZWEA9XVKuJuMZLlYbaDDR6dYLYgbg6vnziEPz03hhixGvTqXpEpk3DGaduwF+f2wTHsTu5d2tqTwpbgdkxkT7HmWtaJnpWBFSAdz/cApSM54Bz6KsdTCp28c7zh+O7c8tRFEujrqaaM5cBPPFEYZ4pg2LXCLbGSSDeo6tdfNON6FDAU4VojFQiRZ5m3P5INhLGqq/FrEMSeOV/DsH2Tw/BVdclUTK0EsldhVjw+AhMm7gaIw/+J37x+A56t0WIGb46bEntpaxanBX8VCY0mUaPUjGgzyo/BEnT9jcK9JfWbMfUA/vhNMaSHlUoUhH2L6XDiGw6ncuqdJfof0gCodXinra4c2E8Hn9UwOoQ7+xKns/3DAlUEfGva0zhwnOHMBd3FAYOWg938/vI1BDqGrUfPbrB+Nvvd+PGu5bg/Q2M7Rzal2gEaaoiSdCanM2WtmqM3wxRUVE98TMpDiKldsQAG9ddMhH/NqcEJYPI9CTTRImheP35Etx230r8c9EOJLM2nOIYIhbRGeo+ySSI8KUp/UYbXmfbJIBEvseogvg2SjvIeNWhTZewIMWcJCVsAJ3eK9muSy8YgcR4aqJNy6gJMrDLBzChMRyP3F2Pi7//DqI0G+LY9aSWVcr4GUrNazbubZy3NhqLjtbS100G6oy8yxSMwwxAowTQKRxBm3TjdeU44WzGQUlK5rp6qBJOjtHl+Hh5Ie68dRV++/dtdBcIiVH8HUekztX2FByoJMFni4w9/ciBuP7aAzD9uEp6D1s5voPRUBnHY4/txO33bcQnVWR+hDYqWkAb6sJRBbCNWu36ZMUjdgcyltwRBO55DNTeUFs9ymegDEBWq0rFQRHT0lif1JmSQyYX4e7rD2ZYxMZXr0Nd5U7ECophjyhD5cdx3HXfWjz0xwrUcjhiBaWMZav9cKZnJLawX7Nxz39TECk4I4PsAh/xkVgo6GRXGKjNvjgxtgZBJAXEHA9SjONUluotZuCifxuLq743CMPLYsisXQ27gXFa2VjUecOIuGzGPfNXY8P2LAoThWioqUei0MRNV0zD1y9LoKikgowjDIYheP1ZGzfNX4+X39pJxsTp3TFpa1fDJtOy9PIEU/W8ErhiYzkJLGs3bSiz8WZeAb9qXjKncpVNRs7RCT1cV5wzjkcmSzAhk+U4eZhz1ihce9VojNyfvd74Hu1xDeKDxtB0DMXip11cfesHePO9nT7QHWMb3XqkNCIlRVdhFV33qWXKqeVV/kz7d6YZrlno7sUFmqKOtzlYYtM8Dqil0sjaWY0XZpI+LjiTNuKeGyfhiFMGMy20FNlP6K0N3BfGPhNw5+XLcMND23DUrCK88s9jGCwzZhwwCFWbi/Hzh1bjnoc2Y1e9pyEvJxrXUJwubLJ8oECpErYh46d8PL+LnuEzyNQxmHxILaHzfAJnp/TrrIQNvIbpelqNZyNJMp1aQ3HgG2mrVRJjhluYd+VknDc3zj5WI7t+C1QRpb1sElI1Cdx//xrc9gClrZ734q3EGGQ5HpIugye2HX5b0Stqhs7kLOp5Z5wnWOfpmhEtGdNVT4kDovNmpqgX3+BnaeydVAJxpmSiDBOceAneXOniyHNew+B9nsFdD5SiZsBsMi8BVbuUs9iPI0cXUaoq38SuLTHMPOxj9BvzHK6/dyuqMZDBvoUCTrJ42vOr0DRSV0SGEblBJYctA79mNJiIRihXSjNcx9MBxJames1aIrUNiNKDdugV048iTttfq0mPgMKXT0jgg3/Owsfrj8EFZ9chvfZdJjkaYO8/E6vWTMGXTtmMomHP4dq7tiOdiSMqKJJZQsiwUMeSBttlMwXlMMzpJfOkB3oNJVoy8MVFz8sCFDMfX0Q3GagvRya6lDhPhx7EOFFPD7IONdE0J6EkbBvh0BlwYg5qGHRff+f7GDD6acw6fANWfrAf+g0YrpspOTxEEli11sabS3eiMBbT2W83u4uzmyxyCpCOiKRROujlSfJXAn5Fqde1niHkaCCv1CO0aX5AL3FmlGJhZZiO4mC7MUX8swH1NUmMG1SHR+89CJVbjsfv/zgMk4YsgVr5IsMiggrDj8f9Dw7E4KEv4MDTX8VTi7bBK2JYUdRAoD7tq12XGohaSAZYIrEsMdGwDrU3xGsnnGh0Tvg+F5Ds2LXrdKrPNkOHtnN9aHWOeKEeOyC4ZSTjoKSQkkjYqY6SYkcKiZDQySCkREBKChR0PWc0amjA99UVOzB51gsojEupH7PnsYwu2LXMIs3Qf/ziGBQN2YVbb12Dvy6u1MBxtJQSI5pTRMYmE13BQMXTTGuuhZBZU+I4QD51BtnT2XpXRegZp5lKosdKT/es2cNw6w/LMGkmJ/nWd6AqmPUfvA+MMQfi/bdt3DV3LR5/8i+ULjY7zuvELMTVQIYIjHlNUb9RHSNKSUZcEBuboHhSMZqg3aN3bOqMRO/KUVTWFU05X17nByVnGMHS5o5K+joiSfOYrpTspTFtsoEdVRdix45D8d8/OwX1DbWwaPzrMik6NkpAE0YJjXp62tkMHObkrHgRwwlHp5/iUVsjFl7a72w2uQlTpr6HJ/4+DjvXzsA9VxFXJaPqklXwiHta4qwwC2BalQiTTX75YZOnqdVnkHLiyUgz09HYUEMln8FPid5UbzoWf/r7MIxPMOx5/w2g3yA0lB2Pn/33QIwauQQHHPUyfvvkVrjRYm1/LSJEpVYRGlNbOTmpjpNsN1GhZLYeF5wzGjtrTsPOuvPwxcMG0gGTdJWp+4YeeRh5ZGBqIlCjmoEzZ86cbdmW7mBnq3s6rtWUK2b0jLfpDKDhXRi7VhBU3qXPaWyswVN/fRa11TXYvm0bEXwfkspYlq6HiWQpcbRFoNHXyJlgl6bPwM01A2D2nw7s/hjFn7yNqy5PY+uWw/Hyb2dixsRG1NdW0mbZtMGDOL/9CjLdOS+rbbPBdvm2MMr7MrtQ24CDxsXwwh8JBGz7Er45pw7xTxdCbd8Ga8J+2JA6GHPOrcaAff6Bb31/GSqI5RJeRNShu6PqKGUZnbWorq/C8y8+i08/3Yw1a9agsjapJ7JL0BuVdMBqFtNtSuqYVpwr7aJ3wRJ2ZMbYm0SdbU/NMXD37t2zjbAWs1ckdSimXpUgsRfo4tNocAybBL24KEbgWhKzvvY2BHER2EzKK0xJt8T1IFsShhHndBzfmH316pcxevhS/OK/9kVmzCzG0zZS7y3GYQevxqJFs+msHo9rLxrFPuxAQz1RD1cmBtWq1HwaRZR6xm51kmGox1VzJ2DL8hPx5tuTcey0NciufIHNLIU76Wj89qmhmDxuFcYd+hx+8zTj07i0IU7nhnhuViSYGkJQJFM3UPdhnyHDMXToUPTvPzDopVTbKD2J4BYgpXW4OFt2l4Uvr/i3NTP9E87w70Rat2btLPmBxj57QSFArK+fg5/cFlixyvs3/F3ocfgut4Qano8es9O+R2lFB2J9ZRbfuPl9lI54GZdd1oDd8aPgjB7H8HYJBmbeYJ6uELs3noQ//eIA7FdG/6/GRZahY7JhKw4cHcM/H5mBql2H4e57M+hvvAZv80YYow5AddERuO7KNBIDXsFXv/UOVn5KaSsc6Fd/16ZQwnG3pdipKXvYrN8yWXQaLeiHEZ4SLI4yggyIFIL14dqRAxHcgh6YO7W79q4l5U8A36FRQf6Lg2+1cIrQLBOXm2XaOgQqJlLg6FhS6l9kpltUW44o2kic+b4iPPD4Fuwz5RUcNPEjPPGPITDGTtcFvd7m53HWUZVY9u7BWPfGUbjq3CjWLf4C3lk2BbOO2UCc6VUCRAwB9jsQry0ZjRnTlmHQxGfxo8c+QoqOR5RCE6W0Zhp34fTDhmDDu9Oxad3ZtGsZhhzFetFM/oIbPYjst6nTWYbmj6dNUdhRMzeuptG+/euK75H7zr+0r0IvvvhiHVd0B7TubCWsfzOfPTk0P6BcYj8cBDStOpKmWXTn5SdS7g6vHyzXV7VZx3fPY7xwnNIQY8Y7EnWwYkMVzvnmuyga9AquubYaO6KnwSgnkLz5HYyIvYq77xmEEQWvQTF2MwcPQ3bIyfjZzwdhUP/XcNS5L2PZBwYKCL9ZxGQ9l6GErLdgBl6cq0MmDMHIfWkQtm/3wwEr5ZditLX2D00MNYI6G+RhOmFf+4T8yyRisViZ2djYmFvP11tqnuVGjkkqLxkrdS1N54anBb/R6ShKAOO7Q6YznttdjbETUigbXgqvXtxy2hM6JI1SqGtKtp9DZZXC5qkp2tF7f7kR++z3BGYe/Dpeem067H1PYW6HzBk1BcvXTMUpx29G8ZCn8a15K1CVKuUkiBM/rWHC2i84sgVMp7Pj6SwDkZPCRn/dYaxBd8XMuLpyHO2Oa1N/M5ksmmxHk77pS5IiYHvDmrVTQs+6N9cPmSfIiADGAqn5KtT06zMDSgcxkMrLCoR1phm62Yl4I3Z++n9gbF+BxioXReanqNh4MB7/ySc49/LVRDkMfzow3hPVLINvaPSH/0dMjcW+tTqF4y58GSVk7InHjcfi19fg0x1JXT7oxCI626GokpUlZYcECNjmiDhQsi5DqkUDI+bqfChjWaaj5J6W6WcjWg5UU6lNE0Du6jwq8vraWhv1lpizLbe3bNtW7u+QhG7l/9o+V+XiHG3QtR/CkNtsqlxukjY0/Q3Hg50uKZJAuBLpqu0SKcO26NGufA9D9ymHX4ogKtUPxHPlgWhSXVIzZDmynmIgYzMb//O3Clg2oYWYFBAbuXgwbEdWL6eK+ItDiRCZAjR7tv4sKus/MnaAoUJ7oG3NctWq4MvQVW1Bh5tUZx/xL9RezBEeaFdVVZbnxrQbzAv/trcXmSvVukFlla4hCaj1HZrsn/znaGSGUkXc1DB9o205UQbddcH5AQNFkgVNgb+cOp/srEgpMUuOt8EwRJaNCQqiERDVvJ+2lP8p29calniTVICiMgxm+21KXIqhUMYIEjSi/iOt7tfSdOh+OEE1A5lrW2Zfa8/wvv1s6tGEXimqZ3P3pkdbDA9daL9GU6SkeRihWr3I/60R2A1LV0O7ZoT9z9CxsQMPLgg5OliLIL+2lV9Bppms/KIkWRevNChgNDs34sm1mDGhxLgieZI9sKIimqiu5TWi/F02KJ3XqrpzTsgdvLDTRliV3r4A9sL7L6NdzvbrWelE265vuEzZtILdHziIWUnyhpRTnUazayD/Y4mdpONSn6lTDZ4O6v3zPY3U+G9kswIV7EjhHzK+GVNkzfYzFNliHVD76xfyVJl+R2cDxGg1Bk+Jd4uZ8rKRTdXgKycV49rvTIS3bR3TmlG/LUZr6RPyWjIgDKMCcj0vMBWqV1BlS5ItyzixzYS+el+JuOGX1/vbeYiai+hBDskKX+YGsfmtHWE6YTiPToalVzyLk0LXhwiKkGkp+BXV0uZIoHibuwhpW2lQXdZJKEtK3+lFuhENXkt6R6rfXL1ULEqkphppSitDQzoyNbj5O0OYgZiJ3/1xX5SoV2AOSmD9aqI0TG5n7EybWqoJ3wwnSODAaYPrNUEbfee/+Fc0jIRNDpYqX+bRG5SgqWYUPsPkoqKyqJasPBaZgb3P3anFLWXFD4rGw57ELEBqH35Qo4Hn6CpKElbrwbEoUWlbVKvb6vfC85jUp6YH8NaVGpoTiNCRMkCpO4UA5rR4sTRSdSko5vv2LxuAm28YhDPOHQCH6jK1dgUUMxDOAYfiyd8U4Zy5fycG6mjbKKUeGmTJQ60iTuiZNjXGsHzAXEuu5atRvfBH9d36e5FAW4UzpY8gHqPp6rk+tWkDc+cbuVJ5xub4eBswYtgfaTpFTa7z1S8vUN9ApRhnqkhiPym01amrRp0sbXZVSpmVpMqM79JZD5WqZaZjIJJ8H5UVRZYka1OwKZhf+z8jccNV+2L8AcR4Nn0EY/1aWpUxsPY7Fn/+zRZc88O3sX4bs/TFJpwk78/JmPL3CWo5kP6tjeb9QjggqqmJqu+G2ke/jOBmvdHFQJMt80KVYQT/tMhwKNdr87fhOR715tadWezabWN7dQa7amzsrilgjkIk0PXtnlWjbZ1SrWMyCRXSTKxmUg7GDokhU3kThiV2QTUmkJECYGYirr50OnZvm41HHy7F2KLXobYsg1E2ChszR+PSb3go7f80zvnWu9i0i+mhOOE7pokyBMSTpudjLK3ypX5f/fUjecwUKTWtphSWxnZ7z738CnkzLGDqM2oJXLdw21UHxtbf9srViVGIUyEpGIYBFl8rSlsk46eXspbSC0WkKLglAyXkzNY7GLevg9XrToXaeDfWbjgHZf0byEQJSeJ49vkKFJSS+ZktUOUnYcE/RmHy+PdRNuNFPPTEGmKecWKxlnZsMlJQbMgKxDp6t22PU64+SrVAoZRqOvI+Nzo4ukI5bNXHYM3q8E1vpbBpMAP12WZ6qjms1JyhEnYEuycZUlFGx0OX02f0Ys1oNkbvPq1rTUytixrygmTfDW1MZjGl3MZHa7+A9NKn4MQTcFe/hHXrv4zyIVJInMR7a3bjrJM+wB33DmXO9gWcTWlb9QlVeIz21ZbCB1l5KzWlDgeoTrcySyb6K4uMVgMZ6kizmQoNGOd5TT3sAn+6GQ1UmYZL2CP0OUyzR+FEM1J+nkwZoevsNTP4LS9vtMBOTR0aeLoGk/lyeqKODrItNrAhkqQdov3j9xnT0lk3TxZQEkFxGcumUy6mTCgg7jkbDW++gMjIaVj6UQGioycwd/h7rF1zEiaMKNKx2ZMvfYLv376SWQY6SEzUOkRvtG1l+8WDzhhOkBkJ9qDQ+GhTTOc3N1D7Xp5LnQ8xKS9gYgBtq65JWVckMvAbqkxig7ukliU3l7ophc1vYrR+1VKyOykt9+2Fv0A7RAVyc1h7D/7WJAISmF6cjp5LiUwgS8k78sB+WPHBTNS88SwKpo3CQw/uxPRT1+IHN+5GfMoM1L7zFFZ99AVMGVOkSw3teLGuTNOuvhd4XDqOzebxws8sNNW4tRW/NiFTzbyV8PQgSvO1am/Gt9V3VWb/fv3W6Qaqnl+8acY0zU8jMODSEdmUJyQzf9OjFtTm/TvogF5dK9mDdB2Om1GMV5YehOQri1By4GzcdG09Lr39Q8SYab/9gQ9xxWWVKD5oFlKvPInlK7/APCJVa2MdTLtlwlnfFN2hnA30VC7my32heRq4oqqp492xfe2doxkYKSio0Xu0hOLeGzI6AuOa4sTg1OC9atXYltT2xDJ0SimVVDjpmH3x/OsHI/XaQsRmTMPN123GrQ+uh1lKVdjgoYjhx/yHP8R/fONDRI86GdlX/oolS2djxtRS2szeb9iY8wqR62UeQqEQxh0dOXDd3IokfFlhThg38Z9u1kVPSipawUJtlgzQ+Yi2jeK3vE571F67pPRfMh2vvb0ZFSuZTZ85E9dduQM/fPAjFMQsFDD8kCXSDUYjCuxi/PK3mzDnwhWwZx+P+i0NqKio17UtPatDz++h7gVarhT2K47NvIxJ+xIX+h/tTeD88QnfM2Gwwa6sqdwmYiGVVOES6p57o7lpF5gvw8c129iSLd/m9hSHlVgwyui/lhp68kELMeecifjp79ahgLbNZfYiY0kCiGgLY8IMvVeHiMljf/wEkfhAPPP0GuyidNqOqxeY9uT+uXZr3ybfwQlgM5l4Rpg9Qe47dEMSm2HM4Wfyj6BNnrfcHlw8eI3NG0n6p/ehhOEXzwpUJWpD0HuVaWZSQiSpI1nvUiExZLM8cWekzM9f4fDT369CLO4QvWnk72XmpPwcnt66xtcy8YIYfvnoezTPBhzb0lBfS9WWP4m7MqH9Ql3L36Ej7J1+6aAJAO3Zmog2x0DkwpC1ylShf3jyD5sG9OtfJQU5ne1E0dmN2tCeyLlhzT5Du/Yy3zHq5IZ+IVHgOcoklLWGymu6iaEXlgQtCF1+IkGRiKWZF+Yh2+9PWzFf0/dNX6IVZOg7LRKGBOiMyj+5o24Z7balmdPjPz5vuRaEiWPHLffClEevqI3Z6jXfQNXNquBjT6dhmI/U0p//u5bvhVQ7qZgchBdMvs4kJ5Tslr9p68j/TaidJHcqbZYjlUrpz6PRSBt7xIbOS7C/qT/oaG+Fblv3bY+CdujHGOirTTto2ju+I9MXdaE+5WZSCyQpk0lJGSOKi4qwefNmPPzrh3HCCSfIvttIp9N6UMIBy+9YT6g9Ke5UJeYNZsi4kGnSxkmTJuHGG2/EihUr0NDQgLFjx+l225aVc+L85oeTt1lw0WuSfqUy6ZfltS72KB8z/nH+udpz3a6rsBbUNCjB7/Xk07vr+AU+AfUfMAC2pAR452HD9sGFF16Ii+ZepL/bsGEDnn7qKfz60UewdMlSP0Nh2/rIV+/yurdFyB1RKKFSQScMk8l1/Be/iG9feikOO/xw2Sc8YHC42ZAJm9jppo83aPsvQ9eU5PWaKU3VIp3U3cmpgnSGPJhS3utRyGzNrIxGo1Xh6qSek9I4ouahrEWQJTzZKILNy2AVRHDSqSdi5syD8f1bbsbbS9/Um+b4v1QYUTYSl3zzUrz91tuM75JY/PJCnHji8bmBzN+dKZ+hvcdwfRL1GN4rEoni/PPPxdJ33kJNVQ0W/PnPmHXscbBlmxD4YcL6jZ/iwV/+GrNnHYnSRAnGj5uIwtgAaPdCa7OMBjNkAou19TynKajvBQWBycJmHx4wef+X2AGPs11xdisysweHpdhvZRj91SFTC5WqnabUhiHqP++e7BsDjXQWKtOIhLiUojSqqZMPUHfdeata/eGH5AXnLimZyaqs/1JxUNWLL76ojjvuuOA6/B3bGYlE9F9OPn1/ed/yaOtzOT//tfRXrinnnn/++eqdd5YomhR97zRT8a7nN6Suvlr9fcGf1JknHa9KiotDjEVZZoFybOad6A+Huuf8M0cotXuKUg0T1HFHDmB/beXIvrMRq1X7unvYlt36wZN/ePTRuRDHv40O537Iwco/Wl3Y4UBGSshARx1yQAE7cKjy3ipVyRUT1QdPH6buu2G8Ou2oAWpQcW5BujKdCLM1Vq7jJcWF6qyTT1fPPfOCSiVT/iCmaTVdf0AbGxvVE088ofbff/8cI2OxmD7aY2B+n8LXcSb6DMO/58yZM9Wzzz7L+6T1PWjriEn496upqVE/ue9navLE/ZQRTDrDiDI6KdVMgR8BqjEjC9XF545Qf35omvrkrQNVZvMU9n0QLzBWnTw7wUlrKMsmo51C3t/pMQOlv1Zbmw+yrYW8SaV0rKsMbMlE2zGVHZN6WVsdffAAXvJUpT6OKG9FRKVXMMewqYQdKlNq1yHqk1cPVQ/ePk0dP71U9YtbgbtG6beKedjBQEEdeeQM9fcnn8oxUP56gUSsX79eXXDBBbnJEEpWPsOoVXLv5a/0Lzz/3HPPVTt27MgxLbxHfX29+v1v/qCmHTTV1xQcfJuDb1oFwUQzVP9iW517ylD1p4dmqtqVR1LbHKFU1VjlripQ2WVFKv0uJ/AGGYPT1ZknjyCT43p/Iifq9FgCQ23DtpejLTps5kxRoxRRq8OLtH0wEWNRJVmFyjGKVcwpUl8/bbh6fP4UVfH2DOVunawZpyqGq9QyR6Xe7qfU2pFKVU+npH5Bvfm3Q9W1c8er0cMKAmZy0GL9qN6ivqSRqaeddpp64403VEgy6OHf22+/XZ8j5xYUxHOMC9tMxyMncVdeeYVmUsiskHEvvPCiOvroo3Pn2XZMWdQoev9mvt9vdKG6++oJat3rhyuv7lAybLxSa4qoYfqpzIcDlLdlOHX/oSr56XHqvRdmqAdvnqrOPnqYijic6CbHhZKnjx6oTWGc9IlH+8/tfeKPTxytGx71O+3YwQVaSlo7TLR4fsyiFEqxWEE0sHP+YJTScZt1QH/1kxvGqrWLpil357HUh+OVt3kflVxeoLwPhiq1eRINzTFq45uz1e2XjlZlg3yGMGWgIrG4Mm3//cCBA9QdZFhjQ6PPQNrI0FZ+57IrmtnIsM3y2cmnnKxVsFBDQ72WZDpL6sf33KeKA5tmWhyseIGeQGLfDiiPqx9/b7zaufJoStlhlKpRyl1SqNz32OatY9iHI1T99hPV2wtmqHnfnKCmjS9RUSc0EbwGmW/QZESjnEQmpc7uPvNCWx304wx0RPFotNIqcPSNIpzRltNcXbYvgS1Uqi3nOmQqBzJq6plnUEKDwkJVUuSoE6g+H7lnP7XtQ6qfui8otWW0yqyIqoallM5tnN2pqWrN4qPUZecNVwOLfUk0RZXFCnJq8Lxzv6I2bdrsM6Vxt/67c8cuNX369EANG6q0tFQtX7FEf1dbldKMEwZeccU1enLKQNsF7GvEf11aaKvrvjlerX2HDGuYqtTGoSr5lqVSy6NK7WC7ao5VFW8coebfsJ86asqA4Bq+k2ZYRVoTRaK27r+eSMFY2F3QaB0xknZ+PTqjOXO+No+d9kQdiSq1WkqZL8adMzB3RHwGxuiBRqJUi8XaiEctzlKnICehk0cUqR9eMZrqlsxsoKqtHEW7SdW03FRqaxm5MlMt+sNUdfRBpcFv4ipGSTFs//ennHyqqqms115sMumrxwULFqizzjpLv04l0yqbEpXrqrtuv1V7nrJ0L8KJYZi+9E2ZWKieeWS68upp07aPVtklRSqzLEKmjeYEO1qtWXS4uvrCMWpEwslNIER8qYpoZlDlOiL1ZnB0za516hwGn6ErOydXVlYm6DxURqK+A2Dn3STnBXWLgTIDi8iwEqpWsSm0TVGRSjLRpmqI0DuLSi1gJGdrygbE1RVfH6XWvk2prDucEjBCNb5hqOx74gRNVjvWHqpu+c44VRL1HQphpG37EnrFddcGKrIhZyN37dql/7786iJtC0U9FhUW8m+cYYyhvnziMLV+yWwaxOOU91G5Sr/lKE/sc8OR6uNXj1RXfXUEmRYNbDOPGNsajWmvssCkvaVnaUlIw77YVJ/aztmRjj3JTsaw5V+qUJG+cnSFzjnjjHnSScux29TZXVKhOc+Uok8piRH0lyPCmRlhzBS1i1WcnY3xHlFHvMco/1rKLJCH2JXkXPRRtIMP3Dhe7d5IRlYepjxKhfe6RRW7v/JqvqAeu+sgNaAkqmMws9jUdquoqEStWrUqFwYIfemUU33bmODgc0LJed8+b5iq2fYl2rGjlfduQqkVxXRMpqhk7RfUr+fPUBP3cXIOFRimWDG21aZk0VO2OGEi7E+BKRPQJAOhbb9InoRTthPrtQSG78UGsh3z0FWiey4rdisj8ai2g3YvGOgzsckhiujPKIUiiWSiHSngAHA2EgCIUv0UmP3IaDmPgxFJ0KYkfGdAnJAjBqml/ziYkkFmrhuhkq9ZyvuYrnrDieqRW/dXpRF/dUQ05ocK8++fr+3d4MGDqSYpGfGY/vxLRw5SVZtPoHTvTzXdX7kf0eXPzFKbV52kvvG1EZxUVuAI8d7UHFbM0pMrYlPS9KTjRKRDYpORRjTsH1WpJUyNai1jRuweM7DlWMrW112WvpC+ftFF86QTkViBVoOhN9QTBvq/t1tJZshUmx32D/G0JND1HR8/VjL1b+2YqFnf7owcElWP//RASs4xDAb3UanXbKU2jVRZOhfXXDAmiAkH+yFFNK41iTC2bHBcrXmF3mTdwXRKBjJmG0yU4DC18YOT1XFHDM3Foo60Q1S7nv18zRAppvvvkDFWXp98u2db0peof2gb2Lq/PWEgZKL7DtK89vjULmJNrZMoKipaxvC23EtlCOlZXcrY9yS73vzBkUFyrakd/jleFFm7XleTOdlC/WTOwaXALbdMxCWXlAEbVyG5ax2iE8Zj8yejcOpZC7FiDbFIJnjRmMK91x+EK28fAnfVq3AbmDs8cBI+XBLBpd/6EC8t3cYEqexuII+hk33T4roUI789+dt+5PczNxZG0I8ukspLa7VHAoNTlisyrt5uufv00EMPzZbrSAzSlm7uugR2Hue0dzSdZ2l7LHGaIdIY51HghyWDikz1pwdm0Ak5U7v67tt0dryj1C1XTFOFtFMfvU2p2zVepV8Tj3aqqt50jjpu5jA/zKDqMwQPpc2yRW3bAhpEuiQx+e+709+Oxi//evFYrFPPs9MpM+3AA15a8d4Hs8Oim86Q/55IYEe/y+XmpErRjehsh5Lti80Cva88MR3UWyVQySqMHR7HX397CCZN3YXalZtRPHKMvxlC5Xa4NVE4Uydj/i2bccWdK3SygBOTeTWX6S0HZtYvSJbN6jyaQMs1W41Oe31XefnLrlJnWkzSUW42+yjfzkUH1OloM6wo79ev3zLmxBKStOysXqWVaukjUkHtavj4AV3uK1toIUZ1V6/rXrysA89N4bKvjMf9vxuI5Ip3YMsS6f5xZBPTMP3gxVi5oQ4m01qGLGNLS1mGFxQKh8UVMQnu2I/mD7TqysRV3aij6YwYZlRwvI9BJ4/e6XTakHkVDz/88BWCGeZv5NMe6VKJXtTWtEeW7GwvT1Exs3obL9kcXRafuHatXr0rEmPLHtkxCz/5/RpMHv0eomVnwN5vKD7aOQOJYc9g1WZOg2gckUwK0SSZLUvLZb9QOHrtA3WpDvNM2a87j7rKjHwb2VMGytjSU5cM/y3ownMEu6zvDj/00PmvvfXWZby4yHfeErLPD+mZ73rIRD1YZFCBk8aDD5yEC//jaeIExYwUk3q5szyrwvWyefWafUehOm3rKTcdSaZeTKD8HR/T2cz9/OhydIG63HrxSocOGbJ01+7do7rrce1dkuc1JeiJVOsVstlkBvHIQLhqh35WodnCm9zb1FmdDjMjFXzd5QdAdtnySh3+8hUrjuXM2q1DinaqhT9r8jdHqNNPLtM7b0Rk04OdwUawnT//ac+2rcOFKjJ+wjyxe11inlC3XKdhw4ZVPPnkk2enkykvGonk6lM+D4zLORCyV5ST0cUNhakoCtP9dVlcxm6qD93b7W1ZY9om+aXyZ6Ibz88V6nZp16mnnrrw3nvv/XcBi60guDc/B0wMGcOgl4G+7FUaQzpSj5TsUAFxgqwOF5d8FhS2RtrOnKY8cnU5ukk9Wprz3HPPLb/uuuuMhQsXzorEokZWP5472I1oL6in9sIYf9G/6e/rKV4q5HlOhl4DaAT7ZHdlnu1JFRtONDNAd5i2Cz3Ou9AD6vHaqsWLFy+88vIrjUWLFh0di8cM/Xxdoyn4bQk59TV1FDjrHQUNF/6ONfrxa0A3npy5p22kYTRBh6m0Zt489JB6tTju9TdeX3jd1d8zF768kEyMG25u8zmfOgr4e0Ndu6bR5t9m6wv2NhnB+mLl6RrUdDrdK+YJ9Xp14+LXXl14x2231Tz77LNfjESZYc1bb9DTKu//bZQDruEzUNZK8LO59B/mo5fUZyO7YMGCqWeeeeYTBGFH5yPtnxfmfZZOloyBLNjh2CCTzlSZlnlm/vOPenVt9CEtW7as/Iijjnqxsb5+tBM+RATwHYegojzvOcR7jT5r5sn9ZTwaGxsrYrHYMclksgJ9RH26QmTatGkV9bW100eNGnW/VDnbTKvDDRSHAM+68MHQCyI9s3dPL+kOfRZaQE8a25SMAv9Ywrz7p86ePa0vmSfU50t8BLFZt27d5TfecONFjfUN67yIZGAJGsueK3qLZJFKq9V+Y//bSLzkYPV9lWt6c/nR5csXLuwywtJV2qNT8/XXXy8/++wzb/r0061zxEsV78vLuntFIva02sy37y1tvv6czlzGdReWl5fPrSBhD9Fe0S13/vCHc66/6aYb6TqPpqcKN5NBuJNty4HoDrX3u71l89pqexAeVMBPxC7EHqbeb5LSBXrxpZcEIvrJpHETjC1bt5SRef1kxwh5nLeZtyq4eTVM5/RZergqWGgZ/tXbVrtuFY8fzZ49W6TuQ+wF2usj8PpLL5Wf+9Wvztm4efPXLMce5QSrb/XK1sBL1ZiJ3oC2KW0VPL3GXxsUurRAm+jmnpDAsMwhrL/Sm8hatt50rzGbqeI9708kEvOrSPj/gZ555pnyMeXlc/hyrZTyR2NRXf4n6xPyy/hlTYFeZxFpWlsQliRGurjeoC8OvdpJio3MoFrdL7atpLMyj4xL4DOiz0WU/cXZs8/45+JFF2az7hkcHNjy+Da9Y6FfzOTvZt+6sVoSjFb7e+wRCRTpk71ZslSTvL6YBIHBFuIzps8VxvXjO+8s/9mvfjV7zdq1p/HtmZI4tiw/DWS22MKkp45PPrWFGIWvw40UlJ+n85lmmk/yi0fRjYTrnqbPNUg5cWz57K3bd8+uqqmRdYvTyMxSHoakYNKZtL+huDJ6lecTRll5RctChLlCKVvB4y/UkMs/r7btXwpl3nfffadu3bq1XLnuVDo6ZfyonIMu6zjk4SWyiCLRrEMt1GteNr5KNktVSg5U8DNhjjCrAn5StQL/IvT/AKF1CTH40ZInAAAAAElFTkSuQmCC");
             --radius-sm: 0.8rem;
             --radius-md: 1.25rem;
             --radius-lg: 1.75rem;
             --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
             --container: 74rem;
             --header-height: 4.75rem;
+        }
+
+        html[data-theme="dark"] {
+            color-scheme: dark;
+        }
+
+        html[data-theme="light"] {
+            color-scheme: light;
+            --black: #f4f5f7;
+            --black-soft: #ffffff;
+            --surface: #ffffff;
+            --surface-strong: #f1f2f4;
+            --yellow: #8c6a00;
+            --yellow-hover: #725600;
+            --white: #121212;
+            --text: #171717;
+            --muted: #555b65;
+            --muted-strong: #333840;
+            --line: rgba(10, 12, 16, 0.13);
+            --line-yellow: rgba(184, 144, 0, 0.48);
+            --success: #137a45;
+            --ink-on-yellow: #ffffff;
+            --secondary-border: rgba(10, 12, 16, 0.24);
+            --subtle-fill: rgba(10, 12, 16, 0.035);
+            --subtle-fill-strong: rgba(10, 12, 16, 0.065);
+            --header-background: rgba(255, 255, 255, 0.94);
+            --panel-border: rgba(10, 12, 16, 0.14);
+            --panel-background: linear-gradient(145deg, rgba(255, 255, 255, 0.99), rgba(239, 241, 244, 0.98));
+            --floating-background: rgba(255, 255, 255, 0.98);
+            --shadow: 0 24px 70px rgba(25, 28, 34, 0.14);
         }
 
         *,
@@ -125,6 +180,7 @@
             line-height: 1.6;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
+            transition: background-color 220ms ease, color 220ms ease;
         }
 
         body.menu-open,
@@ -161,7 +217,7 @@
 
         ::selection {
             background: var(--yellow);
-            color: var(--black);
+            color: var(--ink-on-yellow);
         }
 
         .skip-link {
@@ -172,7 +228,7 @@
             padding: 0.75rem 1rem;
             border-radius: 0.65rem;
             background: var(--yellow);
-            color: var(--black);
+            color: var(--ink-on-yellow);
             font-weight: 800;
             transform: translateY(-180%);
             transition: transform 180ms ease;
@@ -286,18 +342,18 @@
 
         .button--primary {
             background: var(--yellow);
-            color: var(--black);
+            color: var(--ink-on-yellow);
             box-shadow: 0 12px 34px rgba(255, 208, 0, 0.2);
         }
 
         .button--primary:hover {
-            background: #ffda24;
+            background: var(--yellow-hover);
             box-shadow: 0 16px 42px rgba(255, 208, 0, 0.28);
         }
 
         .button--secondary {
-            border-color: rgba(255, 255, 255, 0.25);
-            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--secondary-border);
+            background: var(--subtle-fill);
             color: var(--white);
         }
 
@@ -325,7 +381,7 @@
         .site-header.is-scrolled,
         .site-header.menu-active {
             border-bottom-color: var(--line);
-            background: rgba(5, 5, 5, 0.92);
+            background: var(--header-background);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
             -webkit-backdrop-filter: blur(18px);
             backdrop-filter: blur(18px);
@@ -350,21 +406,17 @@
         }
 
         .brand-mark {
-            display: grid;
-            width: 2.75rem;
-            height: 2.75rem;
+            display: block;
+            width: 3.2rem;
+            height: 3.2rem;
             flex: 0 0 auto;
-            place-items: center;
-            border: 1px solid rgba(255, 208, 0, 0.45);
-            border-radius: 0.8rem;
-            background: var(--yellow);
-            color: var(--black);
+            border-radius: 50%;
+            background: var(--brand-logo) center / contain no-repeat;
             box-shadow: 0 10px 30px rgba(255, 208, 0, 0.14);
         }
 
         .brand-mark svg {
-            width: 1.75rem;
-            height: 1.75rem;
+            display: none;
         }
 
         .brand-name {
@@ -390,7 +442,7 @@
         }
 
         .nav-link:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--subtle-fill-strong);
             color: var(--yellow);
         }
 
@@ -398,6 +450,32 @@
             display: flex;
             align-items: center;
             gap: 0.65rem;
+        }
+
+        .theme-toggle {
+            display: inline-flex;
+            width: 2.85rem;
+            height: 2.85rem;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line);
+            border-radius: 0.75rem;
+            background: var(--surface);
+            color: var(--white);
+            cursor: pointer;
+            transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--line-yellow);
+            color: var(--yellow);
+            transform: translateY(-1px);
+        }
+
+        .theme-toggle svg {
+            width: 1.35rem;
+            height: 1.35rem;
         }
 
         .menu-toggle {
@@ -546,9 +624,9 @@
             position: relative;
             overflow: hidden;
             padding: clamp(1.4rem, 4vw, 2.25rem);
-            border: 1px solid rgba(255, 255, 255, 0.13);
+            border: 1px solid var(--panel-border);
             border-radius: var(--radius-lg);
-            background: linear-gradient(145deg, rgba(24, 24, 24, 0.97), rgba(9, 9, 9, 0.94));
+            background: var(--panel-background);
             box-shadow: var(--shadow), 0 0 80px rgba(255, 208, 0, 0.08);
         }
 
@@ -602,7 +680,7 @@
             padding: 1rem;
             border: 1px solid var(--line);
             border-radius: 1rem;
-            background: rgba(255, 255, 255, 0.025);
+            background: var(--subtle-fill);
         }
 
         .journey-number {
@@ -648,7 +726,7 @@
             padding: 0.85rem 1rem;
             border: 1px solid var(--line-yellow);
             border-radius: 1rem;
-            background: rgba(13, 13, 13, 0.96);
+            background: var(--floating-background);
             box-shadow: 0 18px 45px rgba(0, 0, 0, 0.42);
             color: var(--muted-strong);
             font-size: 0.78rem;
@@ -775,7 +853,7 @@
             margin-bottom: 0.85rem;
             padding: 0.35rem 0.58rem;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.055);
+            background: var(--subtle-fill-strong);
             color: var(--muted-strong);
             font-size: 0.72rem;
             font-weight: 800;
@@ -825,7 +903,7 @@
             margin-bottom: 1.25rem;
             border-radius: 50%;
             background: var(--yellow);
-            color: var(--black);
+            color: var(--ink-on-yellow);
             content: "0" counter(steps);
             font-size: 0.76rem;
             font-weight: 900;
@@ -939,7 +1017,7 @@
             border: 1px solid var(--line-yellow);
             border-radius: 2rem;
             background: var(--yellow);
-            color: var(--black);
+            color: var(--ink-on-yellow);
             transform: rotate(4deg);
         }
 
@@ -1287,7 +1365,7 @@
             border-radius: 999px;
             background: var(--yellow);
             box-shadow: 0 14px 40px rgba(0, 0, 0, 0.48);
-            color: var(--black);
+            color: var(--ink-on-yellow);
             font-weight: 900;
             text-decoration: none;
         }
@@ -1470,6 +1548,20 @@
             }
         }
 
+        @media (max-width: 25rem) {
+            .site-header .brand-name {
+                display: none;
+            }
+
+            .header-inner {
+                gap: 0.55rem;
+            }
+
+            .header-actions {
+                gap: 0.45rem;
+            }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto;
@@ -1517,17 +1609,31 @@
                 </nav>
 
                 <div class="header-actions">
+                    <button
+                        class="theme-toggle"
+                        id="theme-toggle"
+                        type="button"
+                        aria-label="Ativar tema claro"
+                        title="Ativar tema claro"
+                    >
+                        <svg class="theme-sun-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+                            <circle cx="12" cy="12" r="4"/>
+                            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+                        </svg>
+                        <svg class="theme-moon-icon" aria-hidden="true" hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.5 15.4A8.5 8.5 0 0 1 8.6 3.5 8.5 8.5 0 1 0 20.5 15.4Z"/>
+                        </svg>
+                    </button>
                     <a
                         class="button button--primary header-cta"
-                        href="https://linktr.ee/aaprovacurso"
+                        href="https://wa.me/559984346452?text=Ol%C3%A1!%20Quero%20conhecer%20os%20cursos%20da%20Aprova%20Inform%C3%A1tica%20e%20saber%20mais%20sobre%20as%20turmas%20dispon%C3%ADveis."
                         target="_blank"
                         rel="noopener noreferrer"
-                        data-track="header_contact"
+                        data-whatsapp
+                        data-track="header_whatsapp"
                     >
-                        Quero informações
-                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M13 6l6 6-6 6"/>
-                        </svg>
+                        Falar no WhatsApp
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4Z"/><path d="M8.1 7.7c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.3 0 .5-.2.7l-.6.7c.7 1.4 1.8 2.5 3.2 3.2l.7-.8c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.6 0 .4-.2 1.4-.9 1.9-.7.6-1.7.8-2.7.5-1.1-.3-2.8-1-4.5-2.5-1.3-1.2-2.4-2.8-2.8-4-.4-1.2 0-2.1.3-2.7Z"/></svg>
                     </a>
                     <button
                         class="menu-toggle"
@@ -1582,12 +1688,14 @@
                         </a>
                         <a
                             class="button button--secondary"
-                            href="https://www.instagram.com/aaprovainformatica/"
+                            href="https://wa.me/559984346452?text=Ol%C3%A1!%20Quero%20conhecer%20os%20cursos%20da%20Aprova%20Inform%C3%A1tica%20e%20saber%20mais%20sobre%20as%20turmas%20dispon%C3%ADveis."
                             target="_blank"
                             rel="noopener noreferrer"
-                            data-track="hero_instagram"
+                            data-whatsapp
+                            data-track="hero_whatsapp"
                         >
-                            Falar no Instagram
+                            Falar no WhatsApp
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4Z"/><path d="M8.1 7.7c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.3 0 .5-.2.7l-.6.7c.7 1.4 1.8 2.5 3.2 3.2l.7-.8c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.6 0 .4-.2 1.4-.9 1.9-.7.6-1.7.8-2.7.5-1.1-.3-2.8-1-4.5-2.5-1.3-1.2-2.4-2.8-2.8-4-.4-1.2 0-2.1.3-2.7Z"/></svg>
                         </a>
                     </div>
                     <ul class="hero-note" aria-label="Destaques dos cursos">
@@ -1875,7 +1983,7 @@
                     </details>
                     <details class="faq-item reveal">
                         <summary>Como faço minha matrícula?</summary>
-                        <div class="faq-answer"><p>Entre em contato pelo Instagram ou pelos canais disponíveis no Linktree. A equipe explicará as próximas etapas.</p></div>
+                        <div class="faq-answer"><p>Entre em contato pelo WhatsApp, Instagram ou pelos canais disponíveis no Linktree. A equipe explicará as próximas etapas.</p></div>
                     </details>
                     <details class="faq-item reveal">
                         <summary>Os cursos oferecem certificado?</summary>
@@ -1905,6 +2013,10 @@
                     <p class="lead">Escolha um canal oficial para conversar com a equipe e saber mais sobre cursos, horários e matrículas.</p>
 
                     <div class="contact-list">
+                        <a class="contact-item" href="https://wa.me/559984346452?text=Ol%C3%A1!%20Quero%20conhecer%20os%20cursos%20da%20Aprova%20Inform%C3%A1tica%20e%20saber%20mais%20sobre%20as%20turmas%20dispon%C3%ADveis." target="_blank" rel="noopener noreferrer" data-whatsapp data-track="contact_whatsapp">
+                            <span class="contact-icon" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4Z"/><path d="M8.1 7.7c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.3 0 .5-.2.7l-.6.7c.7 1.4 1.8 2.5 3.2 3.2l.7-.8c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.6 0 .4-.2 1.4-.9 1.9-.7.6-1.7.8-2.7.5-1.1-.3-2.8-1-4.5-2.5-1.3-1.2-2.4-2.8-2.8-4-.4-1.2 0-2.1.3-2.7Z"/></svg></span>
+                            <span><strong>WhatsApp</strong><span>+55 99 8434-6452</span></span>
+                        </a>
                         <a class="contact-item" href="https://www.instagram.com/aaprovainformatica/" target="_blank" rel="noopener noreferrer" data-track="contact_instagram">
                             <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.7" cy="6.3" r="1" fill="currentColor" stroke="none"/></svg></span>
                             <span><strong>Instagram</strong><span>@aaprovainformatica</span></span>
@@ -1925,9 +2037,12 @@
                     <h3>Quer descobrir qual curso combina com você?</h3>
                     <p>Acesse um canal oficial e envie sua dúvida. Assim, você recebe informações atualizadas sem preencher formulários que não seriam enviados.</p>
                     <div class="contact-card-actions">
-                        <a class="button button--primary" href="https://www.instagram.com/aaprovainformatica/" target="_blank" rel="noopener noreferrer" data-track="contact_card_instagram">Conversar pelo Instagram</a>
+                        <a class="button button--primary" id="whatsapp-button" href="https://wa.me/559984346452?text=Ol%C3%A1!%20Quero%20conhecer%20os%20cursos%20da%20Aprova%20Inform%C3%A1tica%20e%20saber%20mais%20sobre%20as%20turmas%20dispon%C3%ADveis." target="_blank" rel="noopener noreferrer" data-whatsapp data-track="contact_card_whatsapp">
+                            Falar pelo WhatsApp
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4Z"/><path d="M8.1 7.7c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.3 0 .5-.2.7l-.6.7c.7 1.4 1.8 2.5 3.2 3.2l.7-.8c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.6 0 .4-.2 1.4-.9 1.9-.7.6-1.7.8-2.7.5-1.1-.3-2.8-1-4.5-2.5-1.3-1.2-2.4-2.8-2.8-4-.4-1.2 0-2.1.3-2.7Z"/></svg>
+                        </a>
+                        <a class="button button--secondary" href="https://www.instagram.com/aaprovainformatica/" target="_blank" rel="noopener noreferrer" data-track="contact_card_instagram">Conversar pelo Instagram</a>
                         <a class="button button--secondary" href="https://linktr.ee/aaprovacurso" target="_blank" rel="noopener noreferrer" data-track="contact_card_linktree">Ver todos os canais</a>
-                        <a class="button button--secondary" id="whatsapp-button" href="https://linktr.ee/aaprovacurso" target="_blank" rel="noopener noreferrer" data-track="contact_whatsapp" hidden>Falar pelo WhatsApp</a>
                     </div>
                     <p class="contact-honesty">Atendimento realizado pelos canais oficiais da Aprova Informática.</p>
                 </aside>
@@ -1959,6 +2074,7 @@
                 <div class="footer-group">
                     <h2>Contato</h2>
                     <ul class="footer-links">
+                        <li><a href="https://wa.me/559984346452?text=Ol%C3%A1!%20Quero%20conhecer%20os%20cursos%20da%20Aprova%20Inform%C3%A1tica%20e%20saber%20mais%20sobre%20as%20turmas%20dispon%C3%ADveis." target="_blank" rel="noopener noreferrer" data-whatsapp>WhatsApp</a></li>
                         <li><a href="https://www.instagram.com/aaprovainformatica/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
                         <li><a href="https://linktr.ee/aaprovacurso" target="_blank" rel="noopener noreferrer">Linktree</a></li>
                         <li><a href="#contato">Lago dos Rodrigues - MA</a></li>
@@ -1983,7 +2099,10 @@
             <h3>Você vai desenvolver:</h3>
             <ul class="dialog-list" id="dialog-list"></ul>
             <div class="dialog-actions">
-                <a class="button button--primary" href="#contato" id="dialog-contact" data-dialog-close data-track="dialog_contact">Quero informações</a>
+                <a class="button button--primary" href="https://wa.me/559984346452?text=Ol%C3%A1!%20Quero%20conhecer%20os%20cursos%20da%20Aprova%20Inform%C3%A1tica%20e%20saber%20mais%20sobre%20as%20turmas%20dispon%C3%ADveis." id="dialog-contact" target="_blank" rel="noopener noreferrer" data-whatsapp data-dialog-close data-track="dialog_whatsapp">
+                    Quero conhecer este curso
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4Z"/><path d="M8.1 7.7c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.3 0 .5-.2.7l-.6.7c.7 1.4 1.8 2.5 3.2 3.2l.7-.8c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.6 0 .4-.2 1.4-.9 1.9-.7.6-1.7.8-2.7.5-1.1-.3-2.8-1-4.5-2.5-1.3-1.2-2.4-2.8-2.8-4-.4-1.2 0-2.1.3-2.7Z"/></svg>
+                </a>
                 <button class="button button--secondary" type="button" data-dialog-close>Continuar vendo cursos</button>
             </div>
         </div>
@@ -1991,13 +2110,14 @@
 
     <a
         class="mobile-cta"
-        href="https://linktr.ee/aaprovacurso"
+        href="https://wa.me/559984346452?text=Ol%C3%A1!%20Quero%20conhecer%20os%20cursos%20da%20Aprova%20Inform%C3%A1tica%20e%20saber%20mais%20sobre%20as%20turmas%20dispon%C3%ADveis."
         target="_blank"
         rel="noopener noreferrer"
+        data-whatsapp
         data-track="mobile_sticky_contact"
     >
-        Quero informações
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Quero conhecer os cursos
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4Z"/><path d="M8.1 7.7c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.3 0 .5-.2.7l-.6.7c.7 1.4 1.8 2.5 3.2 3.2l.7-.8c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.6 0 .4-.2 1.4-.9 1.9-.7.6-1.7.8-2.7.5-1.1-.3-2.8-1-4.5-2.5-1.3-1.2-2.4-2.8-2.8-4-.4-1.2 0-2.1.3-2.7Z"/></svg>
     </a>
 
     <script>
@@ -2005,9 +2125,8 @@
             'use strict';
 
             const SITE_CONFIG = Object.freeze({
-                // Adicione somente os números, com DDI e DDD. Exemplo: 5598999999999.
-                whatsappNumber: '',
-                whatsappMessage: 'Olá! Quero informações sobre os cursos da Aprova Informática.'
+                whatsappNumber: '+55 99 8434-6452',
+                whatsappMessage: 'Olá! Quero conhecer os cursos da Aprova Informática e saber mais sobre as turmas disponíveis.'
             });
 
             const COURSE_DATA = Object.freeze({
@@ -2058,8 +2177,65 @@
             const mobileNavigation = document.querySelector('#mobile-navigation');
             const menuOpenIcon = menuToggle?.querySelector('.menu-open-icon');
             const menuCloseIcon = menuToggle?.querySelector('.menu-close-icon');
+            const themeToggle = document.querySelector('#theme-toggle');
+            const themeSunIcon = themeToggle?.querySelector('.theme-sun-icon');
+            const themeMoonIcon = themeToggle?.querySelector('.theme-moon-icon');
+            const themeColorMeta = document.querySelector('meta[name="theme-color"]');
             const courseDialog = document.querySelector('#course-dialog');
             let lastDialogTrigger = null;
+
+            const getWhatsAppUrl = (message = SITE_CONFIG.whatsappMessage) => {
+                const number = SITE_CONFIG.whatsappNumber.replace(/\D/g, '');
+                return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+            };
+
+            document.querySelectorAll('[data-whatsapp]').forEach((link) => {
+                link.href = getWhatsAppUrl();
+            });
+
+            const updateThemeControls = (theme) => {
+                const isLight = theme === 'light';
+                const actionLabel = isLight ? 'Ativar tema escuro' : 'Ativar tema claro';
+
+                if (themeToggle) {
+                    themeToggle.setAttribute('aria-label', actionLabel);
+                    themeToggle.setAttribute('title', actionLabel);
+                }
+                if (themeSunIcon) themeSunIcon.hidden = isLight;
+                if (themeMoonIcon) themeMoonIcon.hidden = !isLight;
+                themeColorMeta?.setAttribute('content', isLight ? '#ffffff' : '#050505');
+            };
+
+            const setTheme = (theme, persist = true) => {
+                document.documentElement.dataset.theme = theme;
+                updateThemeControls(theme);
+
+                if (persist) {
+                    try {
+                        localStorage.setItem('aprova-theme', theme);
+                    } catch {
+                        // A página continua funcionando quando o armazenamento está bloqueado.
+                    }
+                }
+            };
+
+            const initialTheme = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+            updateThemeControls(initialTheme);
+
+            themeToggle?.addEventListener('click', () => {
+                const nextTheme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+                setTheme(nextTheme);
+            });
+
+            const systemTheme = window.matchMedia('(prefers-color-scheme: light)');
+            systemTheme.addEventListener?.('change', (event) => {
+                try {
+                    if (localStorage.getItem('aprova-theme')) return;
+                } catch {
+                    // Sem preferência salva, acompanha o tema do dispositivo.
+                }
+                setTheme(event.matches ? 'light' : 'dark', false);
+            });
 
             const setMenuState = (isOpen) => {
                 if (!menuToggle || !mobileNavigation) return;
@@ -2136,6 +2312,11 @@
                     return item;
                 }));
 
+                const dialogContact = courseDialog.querySelector('#dialog-contact');
+                if (dialogContact) {
+                    dialogContact.href = getWhatsAppUrl(`Olá! Quero conhecer o curso ${course.title} da Aprova Informática. Pode me passar mais informações?`);
+                }
+
                 courseDialog.showModal();
                 document.body.classList.add('dialog-open');
             };
@@ -2162,14 +2343,6 @@
                 lastDialogTrigger?.focus();
                 lastDialogTrigger = null;
             });
-
-            const whatsappButton = document.querySelector('#whatsapp-button');
-            if (SITE_CONFIG.whatsappNumber && whatsappButton) {
-                const number = SITE_CONFIG.whatsappNumber.replace(/\D/g, '');
-                const message = encodeURIComponent(SITE_CONFIG.whatsappMessage);
-                whatsappButton.href = `https://wa.me/${number}?text=${message}`;
-                whatsappButton.hidden = false;
-            }
 
             document.querySelector('#current-year').textContent = String(new Date().getFullYear());
 
